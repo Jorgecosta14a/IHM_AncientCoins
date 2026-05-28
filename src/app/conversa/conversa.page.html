@@ -1,0 +1,39 @@
+<ion-content class="chat-bg">
+  <input type="file" accept="image/*" (change)="enviarFoto($event)" #fileInput style="display: none;" />
+  
+  <div class="chat-container">
+    <div class="header-row">
+      <ion-icon name="arrow-back-outline" class="back-btn" routerLink="/mensagens"></ion-icon>
+    </div>
+
+    <div class="title-row">
+      <h1 class="page-title">Mensagens</h1>
+      <ion-icon name="chatbubble" class="title-icon"></ion-icon>
+    </div>
+
+    <div class="profile-header">
+      <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Diana Vieira" class="profile-img">
+      <h2 class="profile-name">Diana Vieira</h2>
+    </div>
+
+    <div class="messages-area">
+      <div *ngFor="let msg of mensagens" 
+           class="msg-bubble" 
+           [class.received]="msg.tipo === 'recebida'" 
+           [class.sent]="msg.tipo === 'enviada'">
+        <img *ngIf="msg.foto" [src]="msg.foto" style="max-width: 100%; border-radius: 10px;">
+        <span *ngIf="!msg.foto">{{ msg.texto }}</span>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border" style="background: #EBEBEB;">
+  <div class="input-area">
+    <div class="input-wrapper">
+      <ion-input type="text" placeholder="Escreve aqui" [(ngModel)]="novaMensagem" (keyup.enter)="enviarMensagem()"></ion-input>
+    </div>
+    <ion-icon name="send" class="action-btn" (click)="enviarMensagem()"></ion-icon>
+    <ion-icon name="camera" class="action-btn" (click)="fileInput.click()"></ion-icon>
+  </div>
+</ion-footer>

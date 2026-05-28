@@ -1,0 +1,26 @@
+<ion-content class="mensagens-bg">
+  <div class="page-container">
+
+    <div class="header-row">
+      <ion-icon name="arrow-back-outline" class="back-btn" routerLink="/explorar"></ion-icon>
+    </div>
+
+    <div class="title-row">
+      <h1 class="page-title">Mensagens</h1>
+      <ion-icon name="chatbubble" class="title-icon"></ion-icon>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Pesquisar conversas" [(ngModel)]="termoPesquisa" (ngModelChange)="pesquisar()" />
+    </div>
+
+    <div class="conversations-list">
+      <div class="chat-card" *ngFor="let conversa of conversasFiltradas" routerLink="/conversa">
+        <img [src]="conversa.avatar" alt="Avatar de {{ conversa.nome }}" class="avatar" />
+        <span class="user-name">{{ conversa.nome }}</span>
+        <div class="badge">{{ conversa.naoLidas }}</div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

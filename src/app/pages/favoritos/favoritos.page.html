@@ -1,0 +1,59 @@
+<ion-content class="explorar-bg">
+  <div class="header-section">
+    <h1 class="page-title">Favoritos</h1>
+    <p class="subtitle">As suas moedas guardadas</p>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let moeda of moedasFavoritas">
+        <div class="coin-card">
+          <div class="heart-container" (click)="removerFavorito(moeda)">
+            <ion-icon name="heart" class="liked"></ion-icon>
+          </div>
+          <img [src]="moeda.imagem" alt="{{ moeda.nome }}" class="coin-img" />
+          <div class="coin-info">
+            <p class="coin-name">{{ moeda.nome }}</p>
+            <p class="coin-price">{{ moeda.preco }}€</p>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="12" *ngIf="moedasFavoritas?.length === 0" class="no-results">
+        <p>Ainda não tem moedas guardadas.</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer class="ion-no-border" style="background: #EBEBEB;">
+  <div class="custom-footer">
+    <div class="tab-bar">
+      <div class="tab-item" routerLink="/explorar">
+        <ion-icon name="home-outline"></ion-icon>
+        <span>Menu</span>
+      </div>
+      
+      <div class="tab-item active">
+        <ion-icon name="heart"></ion-icon>
+        <span>Favoritos</span>
+      </div>
+      
+      <div class="tab-item central-btn" routerLink="/vender">
+        <div class="circle-bg">
+          <ion-icon name="add"></ion-icon>
+        </div>
+        <span class="btn-text">Vender</span>
+      </div>
+      
+      <div class="tab-item" routerLink="/mensagens">
+        <ion-icon name="chatbubble-outline"></ion-icon>
+        <span>Mensagens</span>
+      </div>
+      <div class="tab-item">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>Perfil</span>
+      </div>
+    </div>
+  </div>
+</ion-footer>

@@ -1,0 +1,102 @@
+<ion-content class="explorar-bg">
+  <div class="header-section">
+    <h1 class="page-title">Explorar</h1>
+    
+    <div class="search-filter-row">
+      <div class="search-bar">
+        <ion-icon name="search-outline"></ion-icon>
+        <input type="text" placeholder="Pesquisar moedas antigas" [(ngModel)]="termoPesquisa" (ngModelChange)="aplicarFiltros()" />
+      </div>
+      <ion-icon name="options-outline" class="filter-icon" id="open-filter-modal"></ion-icon>
+    </div>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let moeda of moedasFiltradas">
+        <div class="coin-card">
+          <div class="heart-container" (click)="toggleFavorito(moeda)">
+            <ion-icon [name]="moeda.favorito ? 'heart' : 'heart-outline'" [class.liked]="moeda.favorito"></ion-icon>
+          </div>
+          <img [src]="moeda.imagem" alt="{{ moeda.nome }}" class="coin-img" />
+          <div class="coin-info">
+            <p class="coin-name">{{ moeda.nome }}</p>
+            <p class="coin-price">{{ moeda.preco }}€</p>
+          </div>
+        </div>
+      </ion-col>
+      <ion-col size="12" *ngIf="moedasFiltradas?.length === 0" class="no-results">
+        <p>Nenhuma moeda encontrada com estes filtros.</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-modal trigger="open-filter-modal" [initialBreakpoint]="0.75" [breakpoints]="[0, 0.75, 0.9]" class="filter-modal">
+  <ng-template>
+    <div class="modal-content">
+      <h2 class="modal-title">Filtros pesquisa</h2>
+      
+      <div class="filter-group">
+        <label>Preço mínimo</label>
+        <input type="number" class="real-input" [(ngModel)]="precoMin" (ngModelChange)="aplicarFiltros()">
+      </div>
+      
+      <div class="filter-group">
+        <label>Preço máximo</label>
+        <input type="number" class="real-input" [(ngModel)]="precoMax" (ngModelChange)="aplicarFiltros()">
+      </div>
+
+      <div class="filter-group">
+        <label>Condição</label>
+        <div class="pills-row">
+          <span class="pill" [class.active]="filtroCondicao === 'Novo'" (click)="selecionarCondicao('Novo')">Novo</span>
+          <span class="pill" [class.active]="filtroCondicao === 'Muito Bom'" (click)="selecionarCondicao('Muito Bom')">Muito Bom</span>
+          <span class="pill" [class.active]="filtroCondicao === 'Bom'" (click)="selecionarCondicao('Bom')">Bom</span>
+          <span class="pill" [class.active]="filtroCondicao === 'Gasto'" (click)="selecionarCondicao('Gasto')">Gasto</span>
+        </div>
+      </div>
+
+      <div class="filter-group">
+        <label>Raridade</label>
+        <div class="pills-row">
+          <span class="pill" [class.active]="filtroRaridade === 'Muito raro'" (click)="selecionarRaridade('Muito raro')">Muito raro</span>
+          <span class="pill" [class.active]="filtroRaridade === 'Raro'" (click)="selecionarRaridade('Raro')">Raro</span>
+          <span class="pill" [class.active]="filtroRaridade === 'Comum'" (click)="selecionarRaridade('Comum')">Comum</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ion-modal>
+
+<ion-footer class="ion-no-border" style="background: #EBEBEB;">
+  <div class="custom-footer">
+    <div class="tab-bar">
+      <div class="tab-item active">
+        <ion-icon name="home-outline"></ion-icon>
+        <span>Menu</span>
+      </div>
+      <div class="tab-item" routerLink="/favoritos">
+        <ion-icon name="heart-outline"></ion-icon>
+        <span>Favoritos</span>
+      </div>
+      
+      <div class="tab-item central-btn" routerLink="/vender">
+        <div class="circle-bg">
+          <ion-icon name="add"></ion-icon>
+        </div>
+        <span class="btn-text">Vender</span>
+      </div>
+      
+      <div class="tab-item" routerLink="/mensagens">
+        <ion-icon name="chatbubble-outline"></ion-icon>
+        <span>Mensagens</span>
+      </div>
+      
+      <div class="tab-item" routerLink="/perfil">
+        <ion-icon name="person-outline"></ion-icon>
+        <span>Perfil</span>
+      </div>
+    </div>
+  </div>
+</ion-footer>

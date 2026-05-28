@@ -1,0 +1,32 @@
+<ion-content class="perfil-bg">
+  <div class="container">
+    
+    <div class="header-row">
+      <ion-icon name="arrow-back-outline" class="back-btn" routerLink="/explorar"></ion-icon>
+    </div>
+
+    <h1 class="page-title">Perfil</h1>
+
+    <div class="profile-header">
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" #fileInput style="display: none;" />
+      <img [src]="utilizador.foto" alt="Foto de perfil" class="profile-img" (click)="fileInput.click()">
+      
+      <div class="name-container">
+        <h2 *ngIf="!isEditingName" class="user-name">{{ utilizador.nome }}</h2>
+        <ion-input *ngIf="isEditingName" [(ngModel)]="utilizador.nome" class="name-input"></ion-input>
+        <ion-icon [name]="isEditingName ? 'checkmark-outline' : 'pencil-outline'" 
+                  class="edit-icon" 
+                  (click)="toggleEditName()">
+        </ion-icon>
+      </div>
+    </div>
+
+    <div class="menu-list">
+      <ion-button expand="block" shape="round" class="menu-btn" routerLink="/anuncios-ativos">Anúncios ativos</ion-button>
+      <ion-button expand="block" shape="round" class="menu-btn" routerLink="/mensagens">Mensagens</ion-button>
+      <ion-button expand="block" shape="round" class="menu-btn" routerLink="/favoritos">Favoritos</ion-button>
+      <ion-button expand="block" shape="round" class="menu-btn" routerLink="/definicoes">Definições</ion-button>
+    </div>
+
+  </div>
+</ion-content>

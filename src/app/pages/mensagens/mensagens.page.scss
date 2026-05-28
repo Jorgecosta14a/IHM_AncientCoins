@@ -1,0 +1,115 @@
+/* Fundo global */
+.mensagens-bg {
+  --background: #EBEBEB;
+}
+
+.page-container {
+  padding: 20px 25px 40px 25px;
+}
+
+/* Navegação */
+.header-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 10px;
+}
+
+.back-btn {
+  font-size: 1.8rem;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Título e Ícone ao lado */
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.page-title {
+  font-family: serif;
+  color: var(--ion-color-gold);
+  font-size: 2.2rem;
+  margin: 0;
+}
+
+.title-icon {
+  color: var(--ion-color-gold);
+  font-size: 2rem;
+}
+
+/* Barra de Pesquisa */
+.search-bar {
+  background: #B3B3B3;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin-bottom: 30px;
+
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #333;
+    font-size: 0.95rem;
+    font-family: sans-serif;
+    font-weight: 500;
+
+    &::placeholder {
+      color: #666;
+    }
+  }
+}
+
+/* Lista e Cartões de Conversa */
+.conversations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.chat-card {
+  background: white;
+  border: 1px solid var(--ion-color-gold);
+  border-radius: 20px;
+  padding: 8px 20px 8px 8px; /* Menos espaço à esquerda para a foto encostar mais */
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  cursor: pointer;
+}
+
+/* Fotos Redondas */
+.avatar {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+/* Nomes */
+.user-name {
+  font-family: serif;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: #111;
+  flex: 1; /* Isto empurra a bolinha com o número para a direita! */
+}
+
+/* Balão dourado das notificações */
+.badge {
+  background: var(--ion-color-gold);
+  color: white;
+  font-weight: bold;
+  font-size: 0.85rem;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

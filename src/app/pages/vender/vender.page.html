@@ -1,0 +1,49 @@
+<ion-content class="vender-bg">
+  <div class="form-container">
+    
+    <div class="header-row">
+      <ion-icon name="arrow-back-outline" class="back-btn" routerLink="/explorar"></ion-icon>
+      <h1 class="page-title">Criar novo anúncio</h1>
+    </div>
+
+    <label class="input-label">Fotos da moeda</label>
+    
+    <input type="file" accept="image/*" (change)="carregarFoto($event)" #fileInput style="display: none;" />
+
+    <div class="photo-upload-box" (click)="abrirSeletorDeFoto()" [class.has-photo]="fotoPreview">
+      
+      <ng-container *ngIf="!fotoPreview">
+        <ion-icon name="camera"></ion-icon>
+        <span>Adicione fotos</span>
+      </ng-container>
+
+      <img *ngIf="fotoPreview" [src]="fotoPreview" class="preview-img" />
+    </div>
+
+    <label class="input-label">Titulo do Anúncio</label>
+    <input type="text" class="custom-input" [(ngModel)]="tituloAnuncio" />
+
+    <label class="input-label">Descrição detalhada</label>
+    <textarea class="custom-textarea" rows="4" [(ngModel)]="descricaoAnuncio"></textarea>
+
+    <label class="input-label">Raridade</label>
+    <div class="segment-group">
+      <div class="segment-btn" [class.active]="raridadeSelecionada === 'Muito raro'" (click)="selecionarRaridade('Muito raro')">Muito raro</div>
+      <div class="segment-btn" [class.active]="raridadeSelecionada === 'Raro'" (click)="selecionarRaridade('Raro')">Raro</div>
+      <div class="segment-btn" [class.active]="raridadeSelecionada === 'Comum'" (click)="selecionarRaridade('Comum')">Comum</div>
+    </div>
+
+    <label class="input-label">Condição</label>
+    <div class="segment-group">
+      <div class="segment-btn" [class.active]="condicaoSelecionada === 'Novo'" (click)="selecionarCondicao('Novo')">Novo</div>
+      <div class="segment-btn" [class.active]="condicaoSelecionada === 'Muito Bom'" (click)="selecionarCondicao('Muito Bom')">Muito Bom</div>
+      <div class="segment-btn" [class.active]="condicaoSelecionada === 'Bom'" (click)="selecionarCondicao('Bom')">Bom</div>
+      <div class="segment-btn" [class.active]="condicaoSelecionada === 'Gasto'" (click)="selecionarCondicao('Gasto')">Gasto</div>
+    </div>
+
+    <ion-button expand="block" shape="round" class="gold-btn publish-btn" (click)="publicarAnuncio()">
+      Publicar Anúncio
+    </ion-button>
+
+  </div>
+</ion-content>

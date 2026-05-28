@@ -1,0 +1,104 @@
+/* Fundo com a mesma imagem do Login */
+.auth-bg {
+  --background: url('/assets/bg-auth.jpg') no-repeat center center / cover;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Tipografia do Título Principal */
+.main-title {
+  font-family: 'Brush Script MT', cursive; 
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 20px; /* Margem ligeiramente menor aqui para caberem os inputs todos */
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+/* O Cartão Escuro */
+.auth-card {
+  background-color: var(--ion-color-card-bg);
+  border: 2px solid var(--ion-color-gold);
+  border-radius: 25px;
+  padding: 25px 20px; /* Um pouco menos de padding vertical para não encostar aos cantos no telemóvel */
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+}
+
+.card-title {
+  color: var(--ion-color-gold);
+  text-align: center;
+  font-family: serif;
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  margin-top: 0;
+}
+
+/* Inputs e Labels */
+.input-group {
+  margin-bottom: 15px; /* Menos margem entre inputs para caberem os 4 confortavelmente */
+
+  label {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    display: block;
+  }
+}
+
+.custom-input {
+  --background: transparent;
+  border: 1px solid var(--ion-color-gold);
+  border-radius: 20px;
+  --padding-start: 15px;
+  --min-height: 40px; /* Reduzi um bocadinho a altura para o ecrã não ficar tão cheio */
+  
+  ion-icon {
+    color: white;
+    font-size: 1.2rem;
+    margin-right: 10px;
+  }
+  
+  ion-input {
+    --color: white;
+  }
+}
+
+/* Links e Textos Dourados */
+.gold-link {
+  color: var(--ion-color-gold);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+/* Botões */
+.gold-btn {
+  --background: var(--ion-color-gold);
+  --color: white;
+  font-weight: bold;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  text-transform: none;
+}
+
+.footer-text {
+  color: white;
+  font-size: 0.85rem;
+  text-align: center;
+  font-weight: bold;
+  margin: 0;
+}
