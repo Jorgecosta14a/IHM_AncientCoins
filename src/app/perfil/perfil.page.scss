@@ -1,33 +1,50 @@
-.perfil-bg { --background: #EBEBEB; }
+.perfil-bg { 
+  --background: #EBEBEB; 
+}
 
 .container { 
   padding: 20px 30px; 
-  text-align: center; 
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centra tudo horizontalmente */
+  align-items: center; 
 }
 
-.header-row { width: 100%; margin-bottom: 20px; }
-.back-btn { font-size: 1.8rem; color: #333; cursor: pointer; float: left; }
-.page-title { font-family: serif; color: var(--ion-color-gold); font-size: 2.2rem; margin-top: 10px; margin-bottom: 30px; }
+.header-row { 
+  width: 100%; 
+  margin-bottom: 15px; 
+}
 
-/* Header com foto e nome */
+.back-btn { 
+  font-size: 1.8rem; 
+  color: #333; 
+  cursor: pointer; 
+  float: left; 
+}
+
+.page-title { 
+  font-family: serif; 
+  color: var(--ion-color-gold); 
+  font-size: 2.2rem; 
+  margin-top: 10px; 
+  margin-bottom: 40px; 
+}
+
+/* Área da Imagem e Nome */
 .profile-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 40px;
+  margin-bottom: 50px; /* Mais espaço para respirar antes dos botões */
   width: 100%;
 }
 
 .profile-img { 
-  width: 120px; 
-  height: 120px; 
+  width: 130px; /* Tamanho proporcional ideal */
+  height: 130px; 
   border-radius: 50%; 
   object-fit: cover; 
   border: 3px solid var(--ion-color-gold); 
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   cursor: pointer;
 }
 
@@ -35,7 +52,7 @@
   display: flex; 
   justify-content: center; 
   align-items: center; 
-  gap: 10px; 
+  gap: 12px; 
 }
 
 .user-name { 
@@ -51,21 +68,23 @@
   font-family: serif;
   font-size: 1.5rem;
   border-bottom: 1px solid var(--ion-color-gold);
+  max-width: 200px;
+  text-align: center;
 }
 
 .edit-icon {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #666;
   cursor: pointer;
 }
 
-/* Menu */
+/* Lista de Botões */
 .menu-list { 
   display: flex; 
   flex-direction: column; 
-  gap: 15px; 
+  gap: 20px; /* Espaço generoso entre os botões */
   width: 100%;
-  max-width: 300px; 
+  max-width: 320px; /* Largura máxima para não esticarem demasiado */
 }
 
 .menu-btn {
@@ -76,8 +95,10 @@
   --border-style: solid;
   font-family: serif;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1.15rem; /* Corrige o efeito das letras esmagadas */
+  letter-spacing: normal; /* Mantém a fonte natural */
   text-transform: none;
-  height: 50px;
+  height: 55px; /* Altura ideal para toque no telemóvel */
   --box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin: 0;
 }

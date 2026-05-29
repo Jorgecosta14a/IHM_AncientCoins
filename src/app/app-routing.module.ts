@@ -47,6 +47,10 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'anuncios-ativos',
+    loadChildren: () => import('./pages/anuncios-ativos/anuncios-ativos.module').then( m => m.AnunciosAtivosPageModule)
+  },
 ];
 
 @NgModule({
