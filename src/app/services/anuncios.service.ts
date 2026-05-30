@@ -5,7 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class AnunciosService {
   
-  // A nossa base de dados central!
   private meusAnuncios = [
     {
       id: 1,
@@ -27,12 +26,10 @@ export class AnunciosService {
 
   constructor() {}
 
-  // Devolve a lista às páginas
   getAnuncios() {
     return this.meusAnuncios;
   }
 
-  // Recebe os dados da página Editar e atualiza a base de dados
   atualizarAnuncio(id: number, titulo: string, preco: string) {
     const index = this.meusAnuncios.findIndex(a => a.id === id);
     if (index !== -1) {
@@ -41,7 +38,6 @@ export class AnunciosService {
     }
   }
 
-  // Remove um anúncio
   removerAnuncio(id: number) {
     this.meusAnuncios = this.meusAnuncios.filter(a => a.id !== id);
   }

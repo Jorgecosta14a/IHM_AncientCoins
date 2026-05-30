@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule, Router } from '@angular/router';
-import { AnunciosService } from '../../services/anuncios.service'; // Importa o nosso armazém!
+import { AnunciosService } from 'src/app/services/anuncios.service';
 
 @Component({
   selector: 'app-anuncios-ativos',
@@ -18,7 +18,6 @@ export class AnunciosAtivosPage {
 
   constructor(private router: Router, private anunciosService: AnunciosService) { }
 
-  // Função mágica do Ionic: Executa sempre que a página entra no ecrã!
   ionViewWillEnter() {
     this.meusAnuncios = this.anunciosService.getAnuncios();
   }
@@ -36,6 +35,6 @@ export class AnunciosAtivosPage {
 
   removerAnuncio(id: number) {
     this.anunciosService.removerAnuncio(id);
-    this.meusAnuncios = this.anunciosService.getAnuncios(); // Atualiza a lista no ecrã
+    this.meusAnuncios = this.anunciosService.getAnuncios();
   }
 }

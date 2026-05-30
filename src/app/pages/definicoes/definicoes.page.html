@@ -1,0 +1,60 @@
+<ion-content class="settings-bg">
+  <div class="header-section">
+    <ion-icon name="arrow-back-outline" class="back-btn" routerLink="/perfil"></ion-icon>
+    <h1 class="page-title">Definições</h1>
+  </div>
+
+  <div class="settings-container">
+    
+    <div class="settings-group">
+      <h2>Conta</h2>
+      <ion-item lines="none" class="custom-item" button>
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-label>Editar Perfil</ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+      </ion-item>
+      
+      <ion-item lines="none" class="custom-item" button>
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-label>Alterar Palavra-passe</ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+      </ion-item>
+    </div>
+
+    <div class="settings-group">
+      <h2>Preferências</h2>
+      <ion-item lines="none" class="custom-item">
+        <ion-icon name="notifications-outline" slot="start"></ion-icon>
+        <ion-label>Notificações</ion-label>
+        <ion-toggle slot="end" checked="true" color="warning"></ion-toggle>
+      </ion-item>
+      
+      <ion-item lines="none" class="custom-item">
+        <ion-icon name="moon-outline" slot="start"></ion-icon>
+        <ion-label>Modo Escuro</ion-label>
+        <ion-toggle slot="end" [(ngModel)]="modoEscuro" (ionChange)="toggleModoEscuro()" color="warning"></ion-toggle>
+      </ion-item>
+    </div>
+
+    <div class="settings-group">
+      <h2>Ajuda e Suporte</h2>
+      <ion-item lines="none" class="custom-item" button>
+        <ion-icon name="help-circle-outline" slot="start"></ion-icon>
+        <ion-label>Centro de Ajuda</ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+      </ion-item>
+      
+      <ion-item lines="none" class="custom-item" button>
+        <ion-icon name="document-text-outline" slot="start"></ion-icon>
+        <ion-label>Termos e Condições</ion-label>
+        <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+      </ion-item>
+    </div>
+
+    <ion-button expand="block" shape="round" class="logout-btn" (click)="terminarSessao()">
+      <ion-icon name="log-out-outline" slot="start"></ion-icon>
+      Terminar Sessão
+    </ion-button>
+
+  </div>
+</ion-content>

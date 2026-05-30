@@ -3,7 +3,7 @@ import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { AnunciosService } from '../../services/anuncios.service'; // Importa o armazém!
+import { AnunciosService } from 'src/app/services/anuncios.service';
 
 @Component({
   selector: 'app-vender',
@@ -16,7 +16,7 @@ export class VenderPage implements OnInit {
   
   @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
 
-  anuncioId: number | null = null; // Precisamos de saber o ID da moeda a editar
+  anuncioId: number | null = null;
   fotoPreview: string | ArrayBuffer | null = null;
   tituloAnuncio: string = '';
   descricaoAnuncio: string = '';
@@ -31,7 +31,7 @@ export class VenderPage implements OnInit {
     private route: ActivatedRoute, 
     private router: Router,
     private location: Location,
-    private anunciosService: AnunciosService // Liga o serviço!
+    private anunciosService: AnunciosService
   ) { }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class VenderPage implements OnInit {
         this.botaoTexto = 'Guardar Alterações';
         this.tituloAnuncio = params['nome'] || '';
         this.precoAnuncio = params['preco'] || '';
-        this.anuncioId = Number(params['id']); // Guarda o ID para saber o que alterar!
+        this.anuncioId = Number(params['id']);
       }
     });
   }
@@ -55,7 +55,6 @@ export class VenderPage implements OnInit {
   }
 
   carregarFoto(event: any) {
-    // Código da foto mantém-se
     const file = event.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -74,16 +73,10 @@ export class VenderPage implements OnInit {
     this.condicaoSelecionada = condicao;
   }
 
-  // O BOTÃO DE GUARDAR AGORA É INTELIGENTE!
   publicarAnuncio() {
     if (this.anuncioId) {
-      // Se tivermos um ID, estamos a editar! Avisamos o armazém.
       this.anunciosService.atualizarAnuncio(this.anuncioId, this.tituloAnuncio, this.precoAnuncio);
-    } else {
-      // (No futuro, colocaremos aqui a lógica para Criar uma nova)
     }
-    
-    // Volta para os anúncios ativos
     this.location.back();
   }
 }
