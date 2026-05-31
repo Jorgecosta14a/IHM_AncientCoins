@@ -1,5 +1,9 @@
-/* Fundo global da página */
-.explorar-bg {
+/* =========================================
+   MODO CLARO (BASE) - PÁGINA FAVORITOS
+   ========================================= */
+
+/* Fundo global da página (ajustado para aceitar a classe da tua página) */
+.favoritos-bg, .explorar-bg {
   --background: #EBEBEB;
 }
 
@@ -25,7 +29,7 @@
   font-family: sans-serif;
 }
 
-/* Grelha de Moedas */
+/* Grelha de Moedas (Para quando o utilizador tiver moedas guardadas) */
 ion-grid {
   padding: 10px;
 }
@@ -89,7 +93,8 @@ ion-grid {
   font-family: serif;
 }
 
-.no-results {
+/* Texto de aviso de lista vazia */
+.no-results, p {
   text-align: center;
   color: #888;
   margin-top: 40px;
@@ -165,5 +170,49 @@ ion-grid {
     position: absolute;
     bottom: -20px;
     color: var(--ion-color-gold);
+  }
+}
+
+
+/* =========================================
+   MODO ESCURO - ADICIONADO PARA OS FAVORITOS
+   ========================================= */
+:host-context(.dark) {
+  
+  /* Garante o fundo totalmente preto na página */
+  .favoritos-bg, .explorar-bg {
+    --background: #121212 !important;
+  }
+
+  /* Transforma os textos ("Ainda não tem moedas...") em cinza claro */
+  .subtitle, .no-results, p {
+    color: #aaaaaa !important;
+  }
+  
+  .page-title {
+    color: var(--ion-color-gold) !important; /* Mantém o título em dourado */
+  }
+
+  /* Converte a tua barra inferior para o cinza premium escuro */
+  .custom-footer {
+    background: #1E1E1E !important;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.5) !important;
+  }
+
+  /* Garante que o botão central se ajusta sem cortes brancos */
+  .central-btn .circle-bg {
+    border: 5px solid #121212 !important;
+  }
+
+  /* Se o utilizador adicionar favoritos mais tarde, as caixas já ficam escuras */
+  .coin-card {
+    background: #1E1E1E !important;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5) !important;
+  }
+  .coin-name {
+    color: #E0E0E0 !important;
+  }
+  .coin-price {
+    color: #ffffff !important;
   }
 }

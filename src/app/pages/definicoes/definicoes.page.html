@@ -8,13 +8,13 @@
     
     <div class="settings-group">
       <h2>Conta</h2>
-      <ion-item lines="none" class="custom-item" button>
+      <ion-item lines="none" class="custom-item" button detail="false" routerLink="/editar-perfil">
         <ion-icon name="person-outline" slot="start"></ion-icon>
         <ion-label>Editar Perfil</ion-label>
         <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-item>
       
-      <ion-item lines="none" class="custom-item" button>
+      <ion-item lines="none" class="custom-item" button detail="false" routerLink="/alterar-password">
         <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
         <ion-label>Alterar Palavra-passe</ion-label>
         <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
@@ -23,13 +23,13 @@
 
     <div class="settings-group">
       <h2>Preferências</h2>
-      <ion-item lines="none" class="custom-item">
+      <ion-item lines="none" class="custom-item" detail="false">
         <ion-icon name="notifications-outline" slot="start"></ion-icon>
         <ion-label>Notificações</ion-label>
         <ion-toggle slot="end" checked="true" color="warning"></ion-toggle>
       </ion-item>
       
-      <ion-item lines="none" class="custom-item">
+      <ion-item lines="none" class="custom-item" detail="false">
         <ion-icon name="moon-outline" slot="start"></ion-icon>
         <ion-label>Modo Escuro</ion-label>
         <ion-toggle slot="end" [(ngModel)]="modoEscuro" (ionChange)="toggleModoEscuro()" color="warning"></ion-toggle>
@@ -38,13 +38,13 @@
 
     <div class="settings-group">
       <h2>Ajuda e Suporte</h2>
-      <ion-item lines="none" class="custom-item" button>
+      <ion-item lines="none" class="custom-item" button detail="false">
         <ion-icon name="help-circle-outline" slot="start"></ion-icon>
         <ion-label>Centro de Ajuda</ion-label>
         <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
       </ion-item>
       
-      <ion-item lines="none" class="custom-item" button>
+      <ion-item lines="none" class="custom-item" button detail="false">
         <ion-icon name="document-text-outline" slot="start"></ion-icon>
         <ion-label>Termos e Condições</ion-label>
         <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>

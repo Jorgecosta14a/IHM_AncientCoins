@@ -4,7 +4,7 @@
     
     <div class="search-filter-row">
       <div class="search-bar">
-        <ion-icon name="search-outline"></ion-icon>
+        <ion-icon name="search-outline" class="search-icon"></ion-icon>
         <input type="text" placeholder="Pesquisar moedas antigas" [(ngModel)]="termoPesquisa" (ngModelChange)="aplicarFiltros()" />
       </div>
       <ion-icon name="options-outline" class="filter-icon" id="open-filter-modal"></ion-icon>
@@ -26,7 +26,7 @@
         </div>
       </ion-col>
       <ion-col size="12" *ngIf="moedasFiltradas?.length === 0" class="no-results">
-        <p>Nenhuma moeda encontrada com estes filtros.</p>
+        <p>Nenhuma moeda encontrada.</p>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -69,7 +69,7 @@
   </ng-template>
 </ion-modal>
 
-<ion-footer class="ion-no-border" style="background: #EBEBEB;">
+<ion-footer class="ion-no-border">
   <div class="custom-footer">
     <div class="tab-bar">
       <div class="tab-item active">

@@ -78,3 +78,23 @@
   text-transform: none;
   box-shadow: 0 4px 10px rgba(229, 57, 53, 0.3);
 }
+
+/* --- REGRAS DO MODO ESCURO --- */
+:host-context(.dark) {
+  .settings-bg {
+    --background: #121212;
+  }
+  .custom-item {
+    --background: #1E1E1E;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+  }
+  .custom-item ion-label {
+    color: #E0E0E0;
+  }
+  .settings-group h2 {
+    color: #888;
+  }
+  .back-btn {
+    color: #E0E0E0;
+  }
+}

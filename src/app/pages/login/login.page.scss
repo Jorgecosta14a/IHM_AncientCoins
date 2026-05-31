@@ -1,5 +1,6 @@
 .login-bg {
-  --background: url('../../../assets/bg-auth.jpg') no-center / cover no-repeat;
+  /* Apenas o nome do ficheiro, sem pontos nem barras! */
+  --background: url('bg-auth.jpg') center center / cover no-repeat;
 }
 .login-container {
   display: flex;

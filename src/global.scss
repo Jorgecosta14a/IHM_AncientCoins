@@ -35,3 +35,34 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+/* --- FORÇAR MODO ESCURO EM TODA A APLICAÇÃO --- */
+body.dark {
+  --ion-background-color: #121212 !important;
+  --ion-background-color-rgb: 18,18,18 !important;
+  --ion-text-color: #ffffff !important;
+  --ion-text-color-rgb: 255,255,255 !important;
+
+  // Força o fundo de todas as páginas Ionic a ficar escuro
+  ion-content {
+    --background: #121212 !important;
+    background: #121212 !important;
+  }
+
+  // Força as caixas de texto, listas e cards a mudarem de cor
+  ion-item, ion-card, ion-list {
+    --background: #1e1e1e !important;
+    background: #1e1e1e !important;
+    --color: #ffffff !important;
+    color: #ffffff !important;
+  }
+
+  // Ajusta os textos secundários e labels globais
+  ion-label, p, span, h1, h2, h3 {
+    color: #ffffff !important;
+  }
+  
+  // Garante que os ícones do menu inferior/superior continuam visíveis
+  ion-icon {
+    color: #ffffff !important;
+  }
+}

@@ -18,9 +18,9 @@ export class DefinicoesPage {
   constructor(private router: Router, private alertController: AlertController) { }
 
   toggleModoEscuro() {
+    console.log("O botão do modo escuro foi clicado! Estado:", this.modoEscuro);
     document.body.classList.toggle('dark', this.modoEscuro);
   }
-
   async terminarSessao() {
     const alert = await this.alertController.create({
       header: 'Terminar Sessão',

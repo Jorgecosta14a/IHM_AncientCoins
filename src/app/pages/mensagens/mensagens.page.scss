@@ -1,115 +1,153 @@
-/* Fundo global */
+/* =========================================
+   O TEU DESIGN ORIGINAL (MODO CLARO)
+   ========================================= */
 .mensagens-bg {
-  --background: #EBEBEB;
+  /* O cinzento claro sólido do teu design */
+  --background: #d9d9d9; 
 }
 
-.page-container {
-  padding: 20px 25px 40px 25px;
-}
-
-/* Navegação */
-.header-row {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  margin-top: 10px;
+.header-section {
+  padding: 30px 25px 15px 25px;
+  background: transparent;
 }
 
 .back-btn {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   color: #333;
   cursor: pointer;
+  margin-bottom: 15px;
 }
 
-/* Título e Ícone ao lado */
 .title-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 25px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .page-title {
-  font-family: serif;
-  color: var(--ion-color-gold);
-  font-size: 2.2rem;
+  font-family: serif; 
+  font-size: 2.4rem;
+  color: #b89c49; /* O teu dourado */
   margin: 0;
 }
 
-.title-icon {
-  color: var(--ion-color-gold);
-  font-size: 2rem;
+.chat-icon {
+  font-size: 1.8rem;
+  color: #b89c49; /* O teu dourado */
 }
 
-/* Barra de Pesquisa */
 .search-bar {
-  background: #B3B3B3;
-  border-radius: 20px;
-  padding: 10px 15px;
-  margin-bottom: 30px;
-
+  background: #b5b5b5; /* O fundo cinzento escuro da pesquisa */
+  border-radius: 15px;
+  padding: 12px 15px;
+  width: 100%;
+  
   input {
-    background: transparent;
     border: none;
+    background: transparent;
     outline: none;
     width: 100%;
     color: #333;
+    font-family: serif; /* A fonte no placeholder também parece clássica */
     font-size: 0.95rem;
-    font-family: sans-serif;
-    font-weight: 500;
-
+    
     &::placeholder {
-      color: #666;
+      color: #555;
     }
   }
 }
 
-/* Lista e Cartões de Conversa */
-.conversations-list {
+.messages-container {
+  padding: 10px 25px 40px 25px;
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-.chat-card {
+/* Os teus cartões exatos */
+.message-card {
   background: white;
-  border: 1px solid var(--ion-color-gold);
+  border: 1px solid #b89c49; /* Borda dourada */
   border-radius: 20px;
-  padding: 8px 20px 8px 8px; /* Menos espaço à esquerda para a foto encostar mais */
+  padding: 10px 15px;
   display: flex;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   cursor: pointer;
 }
 
-/* Fotos Redondas */
-.avatar {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  object-fit: cover;
+.avatar-slot {
   margin-right: 15px;
 }
 
-/* Nomes */
-.user-name {
-  font-family: serif;
-  font-size: 1.15rem;
-  font-weight: bold;
-  color: #111;
-  flex: 1; /* Isto empurra a bolinha com o número para a direita! */
+.avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
-/* Balão dourado das notificações */
-.badge {
-  background: var(--ion-color-gold);
+.message-info {
+  flex: 1;
+}
+
+.user-name {
+  font-family: serif; 
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #000;
+  margin: 0;
+}
+
+.unread-badge-slot {
+  margin-left: 10px;
+}
+
+.unread-badge {
+  background: #b89c49; /* Dourado */
   color: white;
+  font-family: sans-serif;
+  font-size: 0.8rem;
   font-weight: bold;
-  font-size: 0.85rem;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
+  width: 24px;
+  height: 24px;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+/* =========================================
+   MODO ESCURO
+   ========================================= */
+:host-context(.dark) {
+  .mensagens-bg {
+    --background: #121212 !important;
+  }
+  
+  .back-btn {
+    color: #ffffff !important;
+  }
+
+  .search-bar {
+    background: #2a2a2a !important;
+  }
+  
+  .search-bar input {
+    color: #ffffff !important;
+  }
+  .search-bar input::placeholder {
+    color: #888 !important;
+  }
+
+  .message-card {
+    background: #1E1E1E !important;
+    border: 1px solid #b89c49 !important; /* Mantemos a borda dourada no escuro! */
+  }
+
+  .user-name {
+    color: #E0E0E0 !important;
+  }
 }
