@@ -9,6 +9,9 @@ const routes: Routes = [
   { path: 'anuncios-ativos', loadComponent: () => import('./pages/anuncios-ativos/anuncios-ativos.page').then(m => m.AnunciosAtivosPage) },
   { path: 'vender', loadComponent: () => import('./pages/vender/vender.page').then(m => m.VenderPage) },
   { path: 'definicoes', loadComponent: () => import('./pages/definicoes/definicoes.page').then(m => m.DefinicoesPage) },
+  
+  // AQUI ESTÁ A ROTA QUE FALTAVA!
+  { path: 'detalhes-moeda', loadComponent: () => import('./pages/detalhes-moeda/detalhes-moeda.page').then(m => m.DetalhesMoedaPage) },
 
   // Páginas com Módulos (como se vê no teu explorador de ficheiros)
   { path: 'registo', loadChildren: () => import('./pages/registo/registo.module').then(m => m.RegistoPageModule) },
@@ -16,8 +19,6 @@ const routes: Routes = [
   { path: 'mensagens', loadChildren: () => import('./pages/mensagens/mensagens.module').then(m => m.MensagensPageModule) },
   { path: 'favoritos', loadChildren: () => import('./pages/favoritos/favoritos.module').then(m => m.FavoritosPageModule) },
   { path: 'perfil', loadChildren: () => import('./perfil/perfil.module').then(m => m.PerfilPageModule) },
-  
-  // AQUI: Devolvida a rota da conversa que eu tinha esquecido de adicionar!
   { path: 'conversa', loadChildren: () => import('./conversa/conversa.module').then(m => m.ConversaPageModule) }
 ];
 

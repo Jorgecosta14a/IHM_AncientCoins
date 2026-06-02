@@ -1,40 +1,37 @@
 <ion-content class="ativos-bg">
-  <div class="page-container">
+  <div class="top-nav">
+    <ion-icon name="arrow-back-outline" class="back-btn" (click)="voltar()"></ion-icon>
+    <h1 class="page-title">Anúncios ativos</h1>
+  </div>
 
-    <div class="header-row">
-      <ion-icon name="arrow-back-outline" class="back-btn" routerLink="/perfil"></ion-icon>
-      <h1 class="page-title">Anúncios ativos</h1>
+  <div class="ads-container">
+    
+    <!-- Caso não haja anúncios -->
+    <div class="empty-state" *ngIf="anuncios.length === 0">
+      <p>Ainda não tens anúncios ativos.</p>
     </div>
 
-    <div class="ads-list" *ngIf="meusAnuncios.length > 0">
+    <!-- Lista de Anúncios -->
+    <div class="ad-card" *ngFor="let anuncio of anuncios">
       
-      <div class="ad-card" *ngFor="let anuncio of meusAnuncios">
-        <img [src]="anuncio.imagem" class="ad-img" alt="Imagem da moeda">
-        
-        <div class="ad-info">
-          <h2 class="ad-title">{{ anuncio.nome }}</h2>
+      <div class="ad-content">
+        <img [src]="anuncio.imagem" alt="Moeda" class="ad-img" />
+        <div class="ad-details">
+          <h2 class="ad-name">{{ anuncio.nome }}</h2>
           <p class="ad-price">{{ anuncio.preco }}€</p>
           
           <div class="ad-stats">
-            <span><ion-icon name="eye-outline"></ion-icon> {{ anuncio.visualizacoes }}</span>
-            <span><ion-icon name="chatbubble-outline"></ion-icon> {{ anuncio.mensagens }}</span>
-          </div>
-
-          <div class="ad-actions">
-            <ion-button fill="clear" class="action-btn edit-btn" (click)="editarAnuncio(anuncio)">Editar</ion-button>
-            <ion-button fill="clear" class="action-btn delete-btn" (click)="removerAnuncio(anuncio.id)">Remover</ion-button>
+            <span class="stat"><ion-icon name="eye-outline"></ion-icon> {{ anuncio.visualizacoes }}</span>
+            <span class="stat"><ion-icon name="chatbubble-outline"></ion-icon> {{ anuncio.mensagens }}</span>
           </div>
         </div>
       </div>
+      
+      <div class="ad-actions">
+        <span class="action-edit">Editar</span>
+        <span class="action-remove" (click)="remover(anuncio.id)">Remover</span>
+      </div>
 
     </div>
-
-    <div class="empty-state" *ngIf="meusAnuncios.length === 0">
-      <ion-icon name="cash-outline"></ion-icon>
-      <h2>Sem anúncios ativos</h2>
-      <p>Ainda não colocaste nenhuma moeda à venda.</p>
-      <ion-button expand="block" shape="round" class="gold-btn" routerLink="/vender">Criar Anúncio</ion-button>
-    </div>
-
   </div>
 </ion-content>

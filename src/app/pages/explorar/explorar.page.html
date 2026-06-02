@@ -14,17 +14,22 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let moeda of moedasFiltradas">
-        <div class="coin-card">
-          <div class="heart-container" (click)="toggleFavorito(moeda)">
+        
+        <div class="coin-card" (click)="abrirDetalhes(moeda)" style="cursor: pointer;">
+          
+          <div class="heart-container" (click)="$event.stopPropagation(); toggleFavorito(moeda)">
             <ion-icon [name]="moeda.favorito ? 'heart' : 'heart-outline'" [class.liked]="moeda.favorito"></ion-icon>
           </div>
+          
           <img [src]="moeda.imagem" alt="{{ moeda.nome }}" class="coin-img" />
+          
           <div class="coin-info">
             <p class="coin-name">{{ moeda.nome }}</p>
             <p class="coin-price">{{ moeda.preco }}€</p>
           </div>
         </div>
       </ion-col>
+      
       <ion-col size="12" *ngIf="moedasFiltradas?.length === 0" class="no-results">
         <p>Nenhuma moeda encontrada.</p>
       </ion-col>
@@ -36,17 +41,14 @@
   <ng-template>
     <div class="modal-content">
       <h2 class="modal-title">Filtros pesquisa</h2>
-      
       <div class="filter-group">
         <label>Preço mínimo</label>
         <input type="number" class="real-input" [(ngModel)]="precoMin" (ngModelChange)="aplicarFiltros()">
       </div>
-      
       <div class="filter-group">
         <label>Preço máximo</label>
         <input type="number" class="real-input" [(ngModel)]="precoMax" (ngModelChange)="aplicarFiltros()">
       </div>
-
       <div class="filter-group">
         <label>Condição</label>
         <div class="pills-row">
@@ -56,7 +58,6 @@
           <span class="pill" [class.active]="filtroCondicao === 'Gasto'" (click)="selecionarCondicao('Gasto')">Gasto</span>
         </div>
       </div>
-
       <div class="filter-group">
         <label>Raridade</label>
         <div class="pills-row">
@@ -80,19 +81,15 @@
         <ion-icon name="heart-outline"></ion-icon>
         <span>Favoritos</span>
       </div>
-      
       <div class="tab-item central-btn" routerLink="/vender">
         <div class="circle-bg">
           <ion-icon name="add"></ion-icon>
         </div>
-        <span class="btn-text">Vender</span>
       </div>
-      
       <div class="tab-item" routerLink="/mensagens">
         <ion-icon name="chatbubble-outline"></ion-icon>
         <span>Mensagens</span>
       </div>
-      
       <div class="tab-item" routerLink="/perfil">
         <ion-icon name="person-outline"></ion-icon>
         <span>Perfil</span>

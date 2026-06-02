@@ -2,17 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-
-interface Moeda {
-  id: number;
-  nome: string;
-  preco: number;
-  imagem: string;
-  favorito: boolean;
-  condicao: string;
-  raridade: string;
-}
+import { RouterModule, Router } from '@angular/router';
+import { FavoritosService, Moeda } from '../../services/favoritos.service';
 
 @Component({
   selector: 'app-explorar',
@@ -22,74 +13,57 @@ interface Moeda {
   imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
 export class ExplorarPage implements OnInit {
-  
-  // Variáveis ligadas ao HTML (Filtros e Pesquisa)
   termoPesquisa: string = '';
   precoMin: number | null = null;
   precoMax: number | null = null;
   filtroCondicao: string = '';
   filtroRaridade: string = '';
 
-  // A nossa base de dados com links provisórios para as imagens não ficarem partidas
-  moedas: Moeda[] = [
-    { id: 1, nome: 'Moeda nero', preco: 750, imagem: 'https://dummyimage.com/150x150/b89c49/ffffff&text=Foto+Nero', favorito: false, condicao: 'Gasto', raridade: 'Muito raro' },
-    { id: 2, nome: 'República portuguesa 1975', preco: 1890, imagem: 'https://dummyimage.com/150x150/c2c2c2/333333&text=Foto+Rep', favorito: false, condicao: 'Bom', raridade: 'Raro' },
-    { id: 3, nome: 'Moeda portuguesa 1962', preco: 1230, imagem: 'https://dummyimage.com/150x150/b89c49/ffffff&text=Foto+Port', favorito: false, condicao: 'Muito Bom', raridade: 'Comum' },
-    { id: 4, nome: 'Moeda Eua', preco: 3450, imagem: 'https://dummyimage.com/150x150/c2c2c2/333333&text=Foto+EUA', favorito: false, condicao: 'Muito Bom', raridade: 'Muito raro' },
-    { id: 5, nome: 'Dobrão D. João V', preco: 4500, imagem: 'https://dummyimage.com/150x150/b89c49/ffffff&text=Foto+Dobrao', favorito: false, condicao: 'Novo', raridade: 'Muito raro' },
-    { id: 6, nome: 'Escudo Prata 1914', preco: 320, imagem: 'https://dummyimage.com/150x150/c2c2c2/333333&text=Foto+Escudo', favorito: false, condicao: 'Bom', raridade: 'Comum' },
-    { id: 7, nome: 'Florim de Ouro', preco: 2100, imagem: 'https://dummyimage.com/150x150/b89c49/ffffff&text=Foto+Florim', favorito: false, condicao: 'Muito Bom', raridade: 'Raro' },
-    { id: 8, nome: 'Tostão D. Manuel I', preco: 850, imagem: 'https://dummyimage.com/150x150/c2c2c2/333333&text=Foto+Tostao', favorito: false, condicao: 'Gasto', raridade: 'Raro' }
+  // Adicionado o 'vendedor' a cada moeda!
+  moedas: any[] = [
+    { id: 1, nome: 'Moeda Romana Nero', preco: 750, imagem: 'assets/moedas/moeda_romana_nero.jpg', favorito: false, condicao: 'Gasto', raridade: 'Muito raro', vendedor: { nome: 'André Nogueira', avatar: 'https://i.pravatar.cc/150?img=11' } },
+    { id: 2, nome: 'Escudo Portugal 1975', preco: 1890, imagem: 'assets/moedas/escudo_1975.jpg', favorito: false, condicao: 'Bom', raridade: 'Raro', vendedor: { nome: 'Pedro Morais', avatar: 'https://i.pravatar.cc/150?img=12' } },
+    { id: 3, nome: 'Moeda Portuguesa 1962', preco: 1230, imagem: 'assets/moedas/moeda_portugual_1962.jpg', favorito: false, condicao: 'Muito Bom', raridade: 'Comum', vendedor: { nome: 'Miguel Miranda', avatar: 'https://i.pravatar.cc/150?img=13' } },
+    { id: 4, nome: 'Moeda D. João V', preco: 3450, imagem: 'assets/moedas/peca_joaov_ouro.jpg', favorito: false, condicao: 'Muito Bom', raridade: 'Muito raro', vendedor: { nome: 'Duarte Bravo', avatar: 'https://i.pravatar.cc/150?img=14' } },
+    { id: 5, nome: 'Dobrão D. João V', preco: 4500, imagem: 'assets/moedas/Dobrao_djoaoV.jpg', favorito: false, condicao: 'Novo', raridade: 'Muito raro', vendedor: { nome: 'Diana Vieira', avatar: 'https://i.pravatar.cc/150?img=5' } },
+    { id: 6, nome: 'Escudo Prata 1914', preco: 320, imagem: 'assets/moedas/escudo_prata1914.jpg', favorito: false, condicao: 'Bom', raridade: 'Comum', vendedor: { nome: 'André Nogueira', avatar: 'https://i.pravatar.cc/150?img=11' } }
   ];
 
-  // A lista que é efetivamente mostrada no ecrã
-  moedasFiltradas: Moeda[] = [];
+  moedasFiltradas: any[] = [];
 
-  constructor() {}
+  constructor(private favoritosService: FavoritosService, private router: Router) {}
 
   ngOnInit() {
-    // Quando a página carrega, mostra todas as moedas por defeito
     this.moedasFiltradas = [...this.moedas];
   }
 
-  // Ativa/Desativa o coração dourado
-  toggleFavorito(moeda: Moeda) {
-    moeda.favorito = !moeda.favorito;
+  abrirDetalhes(moeda: any) {
+    this.router.navigate(['/detalhes-moeda'], { state: { moeda: moeda } });
   }
 
-  // --- LÓGICA DO MODAL DE FILTROS --- //
+  toggleFavorito(moeda: Moeda) {
+    this.favoritosService.toggleFavorito(moeda);
+  }
 
   selecionarCondicao(condicao: string) {
-    if (this.filtroCondicao === condicao) {
-      this.filtroCondicao = ''; 
-    } else {
-      this.filtroCondicao = condicao;
-    }
+    if (this.filtroCondicao === condicao) { this.filtroCondicao = ''; }
+    else { this.filtroCondicao = condicao; }
     this.aplicarFiltros();
   }
 
   selecionarRaridade(raridade: string) {
-    if (this.filtroRaridade === raridade) {
-      this.filtroRaridade = '';
-    } else {
-      this.filtroRaridade = raridade;
-    }
+    if (this.filtroRaridade === raridade) { this.filtroRaridade = ''; }
+    else { this.filtroRaridade = raridade; }
     this.aplicarFiltros();
   }
 
   aplicarFiltros() {
-    this.moedasFiltradas = this.moedas.filter(moeda => {
-      
-      const bateCertoNome = this.termoPesquisa 
-        ? moeda.nome.toLowerCase().includes(this.termoPesquisa.toLowerCase()) 
-        : true;
-
-      const bateCertoPrecoMin = this.precoMin ? moeda.preco >= this.precoMin : true;
-      const bateCertoPrecoMax = this.precoMax ? moeda.preco <= this.precoMax : true;
-      const bateCertoCondicao = this.filtroCondicao ? moeda.condicao === this.filtroCondicao : true;
-      const bateCertoRaridade = this.filtroRaridade ? moeda.raridade === this.filtroRaridade : true;
-
-      return bateCertoNome && bateCertoPrecoMin && bateCertoPrecoMax && bateCertoCondicao && bateCertoRaridade;
-    });
+    this.moedasFiltradas = this.moedas.filter(m =>
+      (this.termoPesquisa ? m.nome.toLowerCase().includes(this.termoPesquisa.toLowerCase()) : true) &&
+      (this.precoMin ? m.preco >= this.precoMin : true) &&
+      (this.precoMax ? m.preco <= this.precoMax : true) &&
+      (this.filtroCondicao ? m.condicao === this.filtroCondicao : true) &&
+      (this.filtroRaridade ? m.raridade === this.filtroRaridade : true)
+    );
   }
 }

@@ -1,82 +1,88 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { AnunciosService } from 'src/app/services/anuncios.service';
+import { Router } from '@angular/router';
+import { AnunciosService, Anuncio } from '../../services/anuncios.service';
 
 @Component({
   selector: 'app-vender',
   templateUrl: './vender.page.html',
   styleUrls: ['./vender.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule] 
+  imports: [IonicModule, CommonModule, FormsModule]
 })
-export class VenderPage implements OnInit {
-  
-  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
-
-  anuncioId: number | null = null;
-  fotoPreview: string | ArrayBuffer | null = null;
+export class VenderPage {
   tituloAnuncio: string = '';
   descricaoAnuncio: string = '';
-  precoAnuncio: string = ''; 
+  precoAnuncio: number | null = null;
+  fotoPreview: string | null = null;
+
   raridadeSelecionada: string = '';
   condicaoSelecionada: string = '';
 
-  tituloPagina: string = 'Vender Moeda';
-  botaoTexto: string = 'Publicar Anúncio';
-
   constructor(
-    private route: ActivatedRoute, 
-    private router: Router,
     private location: Location,
+    private router: Router,
     private anunciosService: AnunciosService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      if (params['edit'] === 'true') {
-        this.tituloPagina = 'Editar Anúncio';
-        this.botaoTexto = 'Guardar Alterações';
-        this.tituloAnuncio = params['nome'] || '';
-        this.precoAnuncio = params['preco'] || '';
-        this.anuncioId = Number(params['id']);
-      }
-    });
-  }
-
-  voltar() {
+  voltar(): void {
     this.location.back();
   }
 
-  abrirSeletorDeFoto() {
-    this.fileInput.nativeElement.click();
-  }
+  abrirSeletorDeFoto(): void {
+    const input = document.getElementById('fileInput') as HTMLInputElement;
 
-  carregarFoto(event: any) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.fotoPreview = e.target.result;
-      };
-      reader.readAsDataURL(file);
+    if (input) {
+      input.click();
     }
   }
 
-  selecionarRaridade(raridade: string) {
+  carregarFoto(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      this.fotoPreview = reader.result as string;
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  selecionarRaridade(raridade: string): void {
     this.raridadeSelecionada = raridade;
   }
 
-  selecionarCondicao(condicao: string) {
+  selecionarCondicao(condicao: string): void {
     this.condicaoSelecionada = condicao;
   }
 
-  publicarAnuncio() {
-    if (this.anuncioId) {
-      this.anunciosService.atualizarAnuncio(this.anuncioId, this.tituloAnuncio, this.precoAnuncio);
-    }
-    this.location.back();
+  publicarAnuncio(): void {
+    const novoAnuncio: Anuncio = {
+      id: Date.now(),
+      nome: this.tituloAnuncio || 'Anúncio sem título',
+      preco: Number(this.precoAnuncio) || 0,
+      imagem: this.fotoPreview || 'assets/moedas/default.jpg',
+      visualizacoes: 0,
+      mensagens: 0
+    };
+
+    this.anunciosService.adicionarAnuncio(novoAnuncio);
+
+    this.tituloAnuncio = '';
+    this.descricaoAnuncio = '';
+    this.precoAnuncio = null;
+    this.fotoPreview = null;
+    this.raridadeSelecionada = '';
+    this.condicaoSelecionada = '';
+
+    this.router.navigate(['/anuncios-ativos']);
   }
 }

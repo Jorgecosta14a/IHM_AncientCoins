@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "nome": "República portuguesa 1975",
+    "preco": 1890,
+    "imagem": "assets/moedas/escudo_1975.jpg",
+    "visualizacoes": 45,
+    "mensagens": 2
+  },
+  {
+    "id": 2,
+    "nome": "10 Réis Cobre 1867 (D. Luís I)",
+    "preco": 50,
+    "imagem": "assets/moedas/moeda_portugual_1962.jpg",
+    "visualizacoes": 12,
+    "mensagens": 0
+  }
+]

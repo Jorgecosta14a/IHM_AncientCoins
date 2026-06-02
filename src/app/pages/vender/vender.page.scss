@@ -1,146 +1,168 @@
 .vender-bg {
-  --background: #EBEBEB;
+  --background: #1f1f1f;
+}
+
+.page-card {
+  width: 90%;
+  max-width: 350px;
+  min-height: 92vh;
+  margin: 18px auto;
+  padding: 0 18px 32px;
+  background: #EBEBEB;
+  border-radius: 24px;
+  box-sizing: border-box;
 }
 
 .header-section {
+  position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 20px 20px 0 20px;
+  padding-top: 28px;
 }
 
 .back-btn {
-  font-size: 1.8rem;
-  color: #333;
+  position: absolute;
+  left: 0;
+  top: 27px;
+  font-size: 1.6rem;
+  color: #222;
   cursor: pointer;
-  margin-right: 15px;
 }
 
 .page-title {
-  font-family: serif;
+  font-family: Georgia, 'Times New Roman', serif;
   color: var(--ion-color-gold);
-  font-size: 1.8rem;
-  margin: 0;
+  font-size: 1.85rem;
+  font-weight: bold;
+  margin: 22px 0 26px;
+  text-align: center;
 }
 
 .form-container {
-  padding: 20px;
   display: flex;
   flex-direction: column;
 }
 
-/* =========================================
-   A CORREÇÃO DAS LETRAS BRANCAS AQUI
-   ========================================= */
 label {
-  color: #333333; /* Força a cor a cinza escuro/preto */
-  font-family: sans-serif;
+  color: #222;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: bold;
-  font-size: 0.95rem;
-  margin-top: 25px;
+  font-size: 0.85rem;
+  margin-top: 18px;
   margin-bottom: 8px;
   display: block;
 }
 
-/* Campos de Texto */
-.custom-input,
-.custom-textarea {
-  width: 100%;
-  background: #C4C4C4; /* Fundo acinzentado do teu print */
-  border: none;
-  border-radius: 12px;
-  padding: 15px;
-  font-family: sans-serif;
-  font-size: 1rem;
-  color: #000; /* Texto lá dentro a preto */
-  outline: none;
-}
-
-.custom-textarea {
-  resize: none;
-  border-radius: 15px;
-}
-
-/* Caixa de Adicionar Foto */
 .photo-upload-box {
   width: 100%;
-  height: 150px;
-  border: 2px dashed #999;
-  border-radius: 15px;
+  height: 160px;
+  border: 2px dashed #222;
+  background: #C4C4C4;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #666;
+  color: #555;
   cursor: pointer;
-  margin-top: 10px;
-  background: #C4C4C4;
   overflow: hidden;
-
-  &.has-photo {
-    border-style: solid;
-    border-color: var(--ion-color-gold);
-    padding: 0;
-  }
-
-  ion-icon {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: #555;
-  }
-
-  p {
-    margin: 0;
-    font-family: sans-serif;
-    color: #333; /* Letras do adicionar foto a preto */
-  }
-
-  .preview-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  box-sizing: border-box;
 }
 
-/* =========================================
-   CORREÇÃO DOS BOTÕES (NOVO/BOM/RARO)
-   ========================================= */
+.photo-upload-box.has-photo {
+  border-style: solid;
+  border-color: var(--ion-color-gold);
+}
+
+.photo-upload-box ion-icon {
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.photo-upload-box p {
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.custom-input,
+.custom-textarea {
+  width: 100%;
+  background: #C4C4C4;
+  border: none;
+  border-radius: 18px;
+  padding: 10px 15px;
+  font-family: sans-serif;
+  font-size: 0.95rem;
+  color: #000;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.custom-input {
+  height: 34px;
+}
+
+.custom-textarea {
+  height: 88px;
+  resize: none;
+}
+
+.custom-input::placeholder,
+.custom-textarea::placeholder {
+  color: #777;
+}
+
 .pills-row {
   display: flex;
-  flex-wrap: wrap; /* Coloca-os lado a lado e empurra para baixo se não couberem */
-  gap: 10px;
+  width: 100%;
+  border: 1.5px solid #222;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #C4C4C4;
+  box-sizing: border-box;
 }
 
 .segment-btn {
-  background: white;
-  border: 1px solid #999;
-  padding: 10px 15px;
-  border-radius: 20px;
-  font-family: serif;
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-right: 1.5px solid #222;
+  padding: 6px 4px;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: bold;
-  font-size: 0.95rem;
-  color: #333;
+  font-size: 0.72rem;
+  color: #222;
   text-align: center;
   cursor: pointer;
-  flex: 1 1 auto; /* Ajustam-se ao tamanho da palavra */
-  min-width: 30%; /* Mas nunca ficam super pequeninos */
-
-  /* Quando o botão está selecionado! */
-  &.active {
-    background: var(--ion-color-gold); /* Fica Dourado! */
-    color: white;
-    border-color: var(--ion-color-gold);
-  }
 }
 
-/* Botão Guardar/Publicar */
+.segment-btn:last-child {
+  border-right: none;
+}
+
+.segment-btn.active {
+  background: var(--ion-color-gold);
+  color: white;
+}
+
 .publish-btn {
-  margin-top: 40px;
-  margin-bottom: 40px;
+  margin-top: 30px;
+  margin-bottom: 8px;
   --background: var(--ion-color-gold);
   --color: white;
   font-family: sans-serif;
   font-weight: bold;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-transform: none;
-  height: 50px;
+  height: 45px;
 }

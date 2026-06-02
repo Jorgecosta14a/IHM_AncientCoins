@@ -1,15 +1,22 @@
-<ion-content class="explorar-bg">
+<ion-content class="favoritos-bg">
   <div class="header-section">
     <h1 class="page-title">Favoritos</h1>
-    <p class="subtitle">As suas moedas guardadas</p>
+    <p class="page-subtitle">As suas moedas guardadas</p>
   </div>
 
-  <ion-grid>
+  <!-- O teu estado vazio -->
+  <div class="empty-state" *ngIf="moedasGuardadas.length === 0">
+    <p>Ainda não tem moedas guardadas.</p>
+  </div>
+
+  <!-- Grelha de Favoritos (Ativa-se quando há moedas) -->
+  <ion-grid *ngIf="moedasGuardadas.length > 0">
     <ion-row>
-      <ion-col size="6" *ngFor="let moeda of moedasFavoritas">
+      <ion-col size="6" *ngFor="let moeda of moedasGuardadas">
         <div class="coin-card">
           <div class="heart-container" (click)="removerFavorito(moeda)">
-            <ion-icon name="heart" class="liked"></ion-icon>
+            <!-- O coração fica sempre preenchido porque é favorito -->
+            <ion-icon name="heart"></ion-icon>
           </div>
           <img [src]="moeda.imagem" alt="{{ moeda.nome }}" class="coin-img" />
           <div class="coin-info">
@@ -18,39 +25,32 @@
           </div>
         </div>
       </ion-col>
-      <ion-col size="12" *ngIf="moedasFavoritas?.length === 0" class="no-results">
-        <p>Ainda não tem moedas guardadas.</p>
-      </ion-col>
     </ion-row>
   </ion-grid>
-
 </ion-content>
 
-<ion-footer class="ion-no-border" style="background: #EBEBEB;">
+<!-- A BARRA INFERIOR FINALMENTE AQUI -->
+<ion-footer class="ion-no-border">
   <div class="custom-footer">
     <div class="tab-bar">
       <div class="tab-item" routerLink="/explorar">
         <ion-icon name="home-outline"></ion-icon>
         <span>Menu</span>
       </div>
-      
       <div class="tab-item active">
         <ion-icon name="heart"></ion-icon>
         <span>Favoritos</span>
       </div>
-      
       <div class="tab-item central-btn" routerLink="/vender">
         <div class="circle-bg">
           <ion-icon name="add"></ion-icon>
         </div>
-        <span class="btn-text">Vender</span>
       </div>
-      
       <div class="tab-item" routerLink="/mensagens">
         <ion-icon name="chatbubble-outline"></ion-icon>
         <span>Mensagens</span>
       </div>
-      <div class="tab-item">
+      <div class="tab-item" routerLink="/perfil">
         <ion-icon name="person-outline"></ion-icon>
         <span>Perfil</span>
       </div>

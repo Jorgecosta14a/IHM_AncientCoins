@@ -1,45 +1,65 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
-import { RouterModule } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-conversa',
   templateUrl: './conversa.page.html',
   styleUrls: ['./conversa.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
+  standalone: true, 
+  imports: [IonicModule, CommonModule, FormsModule] 
 })
-export class ConversaPage implements OnInit {
+export class ConversaPage {
+  nomeContato: string = 'Vendedor';
+  avatarContato: string = '';
   novaMensagem: string = '';
-  mensagens: any[] = [
-    { texto: 'Bom dia, eu vi o seu anúncio sobre a moeda portuguesa de 1962. Consegue baixar o preço?', tipo: 'recebida' },
-    { texto: 'Boa noite, o preço não é negociável.', tipo: 'enviada' },
-    { texto: 'Ok, obrigada!', tipo: 'recebida' }
-  ];
+  mensagens: any[] = []; 
 
-  @ViewChild('fileInput', { static: false }) fileInput!: ElementRef;
+  constructor(private location: Location) {}
 
-  constructor() { }
+  // A MAGIA ACONTECE AQUI: Apanha o vendedor certo SEMPRE que entras no chat
+  ionViewWillEnter() {
+    if (history.state && history.state.moedaAlvo) {
+      const moeda = history.state.moedaAlvo;
+      
+      if (moeda.vendedor) {
+        this.nomeContato = moeda.vendedor.nome;
+        this.avatarContato = moeda.vendedor.avatar;
+        
+        // Limpa as mensagens antigas
+        this.mensagens = [];
+        
+        // Escreve a proposta nova
+        this.novaMensagem = `Olá ${this.nomeContato}, gostaria de fazer uma proposta pela moeda ${moeda.nome}. Aceita negociar?`;
+      }
+    }
+  }
 
-  ngOnInit() { }
+  voltar() {
+    this.location.back();
+  }
 
   enviarMensagem() {
     if (this.novaMensagem.trim() !== '') {
-      this.mensagens.push({ texto: this.novaMensagem, tipo: 'enviada' });
+      this.mensagens.push({
+        texto: this.novaMensagem,
+        remetente: 'eu', 
+        hora: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      });
       this.novaMensagem = '';
     }
   }
 
   enviarFoto(event: any) {
-    const ficheiro = event.target.files[0];
-    if (ficheiro) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.mensagens.push({ foto: e.target.result, tipo: 'enviada' });
-      };
-      reader.readAsDataURL(ficheiro);
+    const file = event.target.files[0];
+    if (file) {
+      this.mensagens.push({
+        texto: '📷 [Imagem anexada: ' + file.name + ']',
+        remetente: 'eu',
+        hora: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      });
     }
   }
 }

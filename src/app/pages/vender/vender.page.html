@@ -1,48 +1,142 @@
 <ion-content class="vender-bg">
-  <div class="header-section">
-    <ion-icon name="arrow-back-outline" class="back-btn" routerLink="/explorar"></ion-icon>
-    <h1 class="page-title">{{ tituloPagina }}</h1> 
+
+  <div class="page-card">
+
+    <div class="header-section">
+      <ion-icon
+        name="arrow-back-outline"
+        (click)="voltar()"
+        class="back-btn">
+      </ion-icon>
+
+      <h1 class="page-title">Criar novo anúncio</h1>
+    </div>
+
+    <div class="form-container">
+
+      <input
+        type="file"
+        id="fileInput"
+        accept="image/*"
+        (change)="carregarFoto($event)"
+        style="display: none;"
+      />
+
+      <label>Fotos da moeda</label>
+
+      <div
+        class="photo-upload-box"
+        [class.has-photo]="fotoPreview"
+        (click)="abrirSeletorDeFoto()">
+
+        <ng-container *ngIf="!fotoPreview">
+          <ion-icon name="camera"></ion-icon>
+          <p>Adicione fotos</p>
+        </ng-container>
+
+        <img
+          *ngIf="fotoPreview"
+          [src]="fotoPreview"
+          class="preview-img"
+          alt="Pré-visualização da moeda"
+        />
+      </div>
+
+      <label>Título do Anúncio</label>
+      <input
+        type="text"
+        class="custom-input"
+        [(ngModel)]="tituloAnuncio"
+        placeholder="Ex: Moeda Romana"
+      />
+
+      <label>Descrição detalhada</label>
+      <textarea
+        class="custom-textarea"
+        [(ngModel)]="descricaoAnuncio"
+        placeholder="Descreve o estado, origem ou detalhes da moeda">
+      </textarea>
+
+      <label>Preço (€)</label>
+      <input
+        type="number"
+        class="custom-input"
+        [(ngModel)]="precoAnuncio"
+        placeholder="0"
+      />
+
+      <label>Raridade</label>
+      <div class="pills-row">
+        <button
+          type="button"
+          class="segment-btn"
+          [class.active]="raridadeSelecionada === 'Muito raro'"
+          (click)="selecionarRaridade('Muito raro')">
+          Muito raro
+        </button>
+
+        <button
+          type="button"
+          class="segment-btn"
+          [class.active]="raridadeSelecionada === 'Raro'"
+          (click)="selecionarRaridade('Raro')">
+          Raro
+        </button>
+
+        <button
+          type="button"
+          class="segment-btn"
+          [class.active]="raridadeSelecionada === 'Comum'"
+          (click)="selecionarRaridade('Comum')">
+          Comum
+        </button>
+      </div>
+
+      <label>Condição</label>
+      <div class="pills-row">
+        <button
+          type="button"
+          class="segment-btn"
+          [class.active]="condicaoSelecionada === 'Novo'"
+          (click)="selecionarCondicao('Novo')">
+          Novo
+        </button>
+
+        <button
+          type="button"
+          class="segment-btn"
+          [class.active]="condicaoSelecionada === 'Muito Bom'"
+          (click)="selecionarCondicao('Muito Bom')">
+          Muito Bom
+        </button>
+
+        <button
+          type="button"
+          class="segment-btn"
+          [class.active]="condicaoSelecionada === 'Bom'"
+          (click)="selecionarCondicao('Bom')">
+          Bom
+        </button>
+
+        <button
+          type="button"
+          class="segment-btn"
+          [class.active]="condicaoSelecionada === 'Gasto'"
+          (click)="selecionarCondicao('Gasto')">
+          Gasto
+        </button>
+      </div>
+
+      <ion-button
+        expand="block"
+        shape="round"
+        class="publish-btn"
+        (click)="publicarAnuncio()">
+        Publicar anúncio
+      </ion-button>
+
+    </div>
+
   </div>
 
-  <div class="form-container">
-    
-    <input type="file" accept="image/*" (change)="carregarFoto($event)" #fileInput style="display: none;" />
-    
-    <div class="photo-upload-box" (click)="abrirSeletorDeFoto()" [class.has-photo]="fotoPreview">
-      <ng-container *ngIf="!fotoPreview">
-        <ion-icon name="camera-outline"></ion-icon>
-        <p>Adicionar foto</p>
-      </ng-container>
-      <img *ngIf="fotoPreview" [src]="fotoPreview" class="preview-img" />
-    </div>
-
-    <label>Título do anúncio</label>
-    <input type="text" class="custom-input" [(ngModel)]="tituloAnuncio" />
-
-    <label>Preço (€)</label>
-    <input type="number" class="custom-input" [(ngModel)]="precoAnuncio" />
-
-    <label>Descrição</label>
-    <textarea class="custom-textarea" rows="4" [(ngModel)]="descricaoAnuncio"></textarea>
-
-    <label>Raridade</label>
-    <div class="pills-row">
-      <div class="segment-btn" [class.active]="raridadeSelecionada === 'Muito raro'" (click)="selecionarRaridade('Muito raro')">Muito raro</div>
-      <div class="segment-btn" [class.active]="raridadeSelecionada === 'Raro'" (click)="selecionarRaridade('Raro')">Raro</div>
-      <div class="segment-btn" [class.active]="raridadeSelecionada === 'Comum'" (click)="selecionarRaridade('Comum')">Comum</div>
-    </div>
-
-    <label>Condição</label>
-    <div class="pills-row">
-      <div class="segment-btn" [class.active]="condicaoSelecionada === 'Novo'" (click)="selecionarCondicao('Novo')">Novo</div>
-      <div class="segment-btn" [class.active]="condicaoSelecionada === 'Muito Bom'" (click)="selecionarCondicao('Muito Bom')">Muito Bom</div>
-      <div class="segment-btn" [class.active]="condicaoSelecionada === 'Bom'" (click)="selecionarCondicao('Bom')">Bom</div>
-      <div class="segment-btn" [class.active]="condicaoSelecionada === 'Gasto'" (click)="selecionarCondicao('Gasto')">Gasto</div>
-    </div>
-
-    <ion-button expand="block" shape="round" class="gold-btn publish-btn" (click)="publicarAnuncio()">
-      {{ botaoTexto }}
-    </ion-button>
-
-  </div>
 </ion-content>

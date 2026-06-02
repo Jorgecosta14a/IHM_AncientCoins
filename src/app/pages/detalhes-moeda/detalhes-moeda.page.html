@@ -1,13 +1,60 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>detalhes-moeda</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content class="detalhes-bg">
+  
+  <div class="top-nav">
+    <ion-icon name="arrow-back-outline" class="back-btn" (click)="voltar()"></ion-icon>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">detalhes-moeda</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="main-card">
+    
+    <div class="card-header">
+      <ion-icon [name]="moeda.favorito ? 'heart' : 'heart-outline'" class="heart-icon"></ion-icon>
+    </div>
+
+    <div class="image-section">
+      <img [src]="moeda.imagem" alt="Moeda" class="coin-img" />
+      <div class="image-counter">1/6</div>
+    </div>
+
+    <div class="title-price-row">
+      <h1 class="coin-title">{{ moeda.nome }}</h1>
+      <div class="price-box">
+        <span class="price-value">{{ moeda.preco }}</span>
+        <span class="price-currency">€</span>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3 class="section-title">Detalhes</h3>
+      <div class="desc-box">
+        {{ moeda.descricao || 'Moeda de ouro excepcional. Retrato nítido. Brilho original de cunhagem. Peça de museu para colecionadores exigentes. Autenticidade garantida.' }}
+      </div>
+    </div>
+
+    <div class="info-section">
+      <h3 class="section-title">Raridade</h3>
+      <div class="state-pill">{{ moeda.raridade }}</div>
+    </div>
+
+    <div class="info-section">
+      <h3 class="section-title">Condição</h3>
+      <div class="state-pill">{{ moeda.condicao }}</div>
+    </div>
+
+    <div class="info-section">
+      <h3 class="section-title">Vendedor</h3>
+      <div class="seller-card">
+        <img [src]="moeda.vendedor?.avatar || 'https://i.pravatar.cc/150?img=5'" alt="Vendedor" class="seller-img">
+        <div class="seller-details">
+          <p class="seller-name">{{ moeda.vendedor?.nome || 'Vendedor Desconhecido' }}</p>
+          <p class="seller-status"><ion-icon name="checkmark-circle"></ion-icon> Vendedor Verificado</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="gold-btn primary-btn" (click)="iniciarConversa()">Comprar</button>
+      <button class="gold-btn secondary-btn" (click)="iniciarConversa()">Fazer Proposta</button>
+    </div>
+
+  </div>
 </ion-content>

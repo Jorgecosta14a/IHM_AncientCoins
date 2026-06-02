@@ -1,25 +1,150 @@
-.chat-bg { --background: #EBEBEB; }
-.chat-container { padding: 20px 25px 20px 25px; display: flex; flex-direction: column; }
-.header-row { margin-bottom: 10px; margin-top: 10px; }
-.back-btn { font-size: 1.8rem; color: #333; cursor: pointer; }
-.title-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
-.page-title { font-family: serif; color: var(--ion-color-gold); font-size: 2.2rem; margin: 0; }
-.title-icon { color: var(--ion-color-gold); font-size: 2rem; }
-.profile-header { display: flex; align-items: center; margin-bottom: 40px; }
-.profile-img { width: 65px; height: 65px; border-radius: 50%; object-fit: cover; margin-right: 15px; }
-.profile-name { font-family: serif; font-size: 2rem; font-weight: bold; color: #111; margin: 0; }
-.messages-area { display: flex; flex-direction: column; gap: 20px; }
-.msg-bubble { max-width: 80%; padding: 12px 18px; font-family: serif; font-size: 0.95rem; color: #111; font-weight: bold; line-height: 1.4; }
-.received { align-self: flex-start; background: #A6A6A6; border-radius: 15px 15px 15px 0px; }
-.sent { align-self: flex-end; background: #B3B3B3; border-radius: 15px 15px 0px 15px; }
-.input-area { display: flex; align-items: center; padding: 10px 20px 25px 20px; gap: 12px; background: #EBEBEB; }
-.input-wrapper {
-  flex: 1; background: white; border: 1px solid var(--ion-color-gold); border-radius: 25px;
-  padding: 0 15px; display: flex; align-items: center; height: 45px;
-  ion-input {
-    --padding-start: 0; --background: transparent; --color: #333 !important;
-    font-family: sans-serif; font-size: 0.95rem; --placeholder-color: #999;
-    --highlight-color-focused: transparent; --highlight-color-valid: transparent;
+.chat-bg {
+  --background: #e2e2e2;
+}
+
+.chat-header {
+  padding: 30px 20px 15px 20px;
+  background: transparent;
+}
+
+.top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-btn { font-size: 1.6rem; color: #333; cursor: pointer; }
+.page-title { font-family: serif; font-size: 2.2rem; color: #b89c49; margin: 0; flex: 1; margin-left: 15px; }
+.chat-icon { font-size: 1.8rem; color: #b89c49; }
+
+.contact-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.contact-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #b89c49;
+}
+
+.contact-name {
+  font-family: serif;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+}
+
+/* Corpo do Chat */
+.chat-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+/* MENSAGENS ENVIADAS POR TI (DIREITA) */
+.msg-eu {
+  justify-content: flex-end; 
+  
+  .message-bubble {
+    background: #b89c49;
+    color: white;
+    border-bottom-right-radius: 5px;
+  }
+  .message-time { color: rgba(255,255,255,0.7); }
+}
+
+/* MENSAGENS DO VENDEDOR (ESQUERDA) */
+.msg-outro {
+  justify-content: flex-start;
+  
+  .message-bubble {
+    background: white;
+    color: #000;
+    border: 1px solid #ddd;
+    border-bottom-left-radius: 5px;
+  }
+  .message-time { color: #888; }
+}
+
+.message-bubble {
+  max-width: 75%;
+  padding: 12px 18px;
+  border-radius: 20px;
+  position: relative;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  
+  p {
+    margin: 0 0 5px 0;
+    font-family: serif;
+    font-size: 1.05rem;
+    font-weight: bold;
+    line-height: 1.4;
   }
 }
-.action-btn { font-size: 1.8rem; color: var(--ion-color-gold); cursor: pointer; &:active { transform: scale(0.9); } }
+
+.message-time {
+  font-family: sans-serif;
+  font-size: 0.7rem;
+  display: block;
+  text-align: right;
+}
+
+/* Barra Inferior */
+ion-footer {
+  background: #e2e2e2 !important;
+  --background: #e2e2e2 !important;
+}
+
+.chat-footer {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px 25px 20px;
+  gap: 15px;
+}
+
+.input-container {
+  flex: 1;
+  background: white;
+  border: 1px solid #b89c49;
+  border-radius: 25px;
+  padding: 12px 15px;
+  
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-family: sans-serif;
+    font-size: 1rem;
+    color: #333;
+  }
+}
+
+.send-btn, .camera-btn {
+  font-size: 1.8rem;
+  color: #b89c49;
+  cursor: pointer;
+}
+
+/* Modo Escuro */
+:host-context(.dark) {
+  .chat-bg { --background: #121212 !important; }
+  .back-btn { color: #fff !important; }
+  .contact-name { color: #E0E0E0 !important; }
+  .msg-outro .message-bubble { background: #1E1E1E !important; color: #E0E0E0 !important; border-color: #333 !important; }
+  .input-container { background: #1E1E1E !important; }
+  .input-container input { color: #fff !important; }
+  ion-footer { background: #121212 !important; --background: #121212 !important; }
+}

@@ -1,31 +1,30 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MoedasService } from '../../services/moedas.service';
+import { FavoritosService, Moeda } from '../../services/favoritos.service';
 
 @Component({
   selector: 'app-favoritos',
   templateUrl: './favoritos.page.html',
   styleUrls: ['./favoritos.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
+  imports: [IonicModule, CommonModule, RouterModule]
 })
-export class FavoritosPage implements OnInit {
-  moedasFavoritas: any[] = [];
+export class FavoritosPage {
+  moedasGuardadas: Moeda[] = [];
 
-  constructor(private moedasService: MoedasService) { }
+  constructor(private favoritosService: FavoritosService) { }
 
-  ngOnInit() { }
-
-  async ionViewWillEnter() {
-    await this.moedasService.carregarMoedas(); 
-    this.moedasFavoritas = this.moedasService.getFavoritas();
+  // Atualiza a lista sempre que entras na página
+  ionViewWillEnter() {
+    this.moedasGuardadas = this.favoritosService.getFavoritos();
   }
 
-  removerFavorito(moeda: any) {
-    moeda.favorito = false; 
-    this.moedasFavoritas = this.moedasService.getFavoritas();
+  // Permite remover dos favoritos diretamente desta página
+  removerFavorito(moeda: Moeda) {
+    this.favoritosService.toggleFavorito(moeda);
+    // Atualiza a vista instantaneamente
+    this.moedasGuardadas = this.favoritosService.getFavoritos();
   }
 }

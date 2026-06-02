@@ -1,0 +1,229 @@
+/* Fundo cinzento claro igual ao Explorar */
+.detalhes-bg {
+  --background: #e2e2e2;
+}
+
+.top-nav {
+  padding: 30px 20px 10px 20px;
+}
+
+.back-btn {
+  font-size: 1.8rem;
+  color: #333;
+  cursor: pointer;
+}
+
+/* O Cartão Branco do Figma */
+.main-card {
+  background: white;
+  border: 1.5px solid #b89c49;
+  border-radius: 35px;
+  margin: 10px 20px 40px 20px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+.card-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+
+.heart-icon {
+  font-size: 2rem;
+  color: #b89c49;
+  cursor: pointer;
+}
+
+/* Zona da Imagem */
+.image-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.coin-img {
+  width: 220px;
+  height: 220px;
+  object-fit: contain;
+}
+
+.image-counter {
+  background: #555;
+  color: white;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 4px 15px;
+  border-radius: 15px;
+  position: absolute;
+  bottom: -10px;
+  right: 10px;
+}
+
+/* Título e Preço */
+.title-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.coin-title {
+  font-family: serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0;
+  width: 55%;
+  line-height: 1.2;
+}
+
+.price-box {
+  display: flex;
+  align-items: center;
+}
+
+.price-value {
+  font-family: serif;
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #000;
+}
+
+.price-currency {
+  font-family: sans-serif;
+  font-size: 2.5rem; /* O Euro Gigante do Figma */
+  font-weight: 400;
+  color: #000;
+  margin-left: 5px;
+  line-height: 1;
+}
+
+/* Secções de Info */
+.info-section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-family: serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0 0 10px 0;
+}
+
+.desc-box {
+  background: #d9d9d9;
+  border-radius: 15px;
+  padding: 15px;
+  font-family: serif;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #000;
+  line-height: 1.5;
+}
+
+/* A Cápsula Única (Em vez da grelha com várias opções) */
+.state-pill {
+  background: #d9d9d9;
+  border: 1px solid #333;
+  border-radius: 20px;
+  padding: 8px 30px;
+  font-family: serif;
+  font-size: 0.95rem;
+  font-weight: bold;
+  color: #000;
+  display: inline-block;
+  text-align: center;
+}
+
+/* Botões Finais */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.gold-btn {
+  flex: 1;
+  font-family: serif;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border-radius: 20px;
+  padding: 15px 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.primary-btn {
+  background: #b89c49;
+  color: white;
+  border: none;
+}
+
+.secondary-btn {
+  background: #b89c49;
+  color: white;
+  border: none;
+}
+
+/* Modo Escuro */
+:host-context(.dark) {
+  .detalhes-bg { --background: #121212 !important; }
+  .back-btn { color: #ffffff !important; }
+  .main-card { background: #1E1E1E !important; }
+  .coin-title, .price-value, .price-currency, .section-title { color: #ffffff !important; }
+  .desc-box, .state-pill { background: #2a2a2a !important; border-color: #555 !important; color: #E0E0E0 !important; }
+}
+/* --- Cartão do Vendedor --- */
+.seller-card {
+  display: flex;
+  align-items: center;
+  background: transparent;
+  padding: 5px 0;
+}
+
+.seller-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #b89c49;
+  margin-right: 15px;
+}
+
+.seller-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.seller-name {
+  font-family: serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #000;
+  margin: 0 0 4px 0;
+}
+
+.seller-status {
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  color: #b89c49;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  
+  ion-icon {
+    font-size: 1rem;
+  }
+}
+
+:host-context(.dark) {
+  .seller-name { color: #E0E0E0 !important; }
+}
