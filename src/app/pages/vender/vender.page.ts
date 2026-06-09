@@ -1,87 +1,78 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-import { CommonModule, Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AnunciosService, Anuncio } from '../../services/anuncios.service';
+import { RouterModule, Router } from '@angular/router';
+import { Storage } from '@ionic/storage-angular';
+import { Camera, CameraResultType, CameraSource } from '@capacitor/camera'; 
 
 @Component({
   selector: 'app-vender',
   templateUrl: './vender.page.html',
   styleUrls: ['./vender.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule]
+  imports: [IonicModule, CommonModule, FormsModule, RouterModule]
 })
-export class VenderPage {
-  tituloAnuncio: string = '';
-  descricaoAnuncio: string = '';
-  precoAnuncio: number | null = null;
-  fotoPreview: string | null = null;
+export class VenderPage implements OnInit {
+  
+  anuncio = {
+    foto: '',
+    titulo: '',
+    descricao: '',
+    preco: null,
+    raridade: 'Comum',
+    condicao: 'Bom'
+  };
 
-  raridadeSelecionada: string = '';
-  condicaoSelecionada: string = '';
+  constructor(private storage: Storage, private router: Router) {}
 
-  constructor(
-    private location: Location,
-    private router: Router,
-    private anunciosService: AnunciosService
-  ) {}
-
-  voltar(): void {
-    this.location.back();
+  async ngOnInit() {
+    await this.storage.create();
   }
 
-  abrirSeletorDeFoto(): void {
-    const input = document.getElementById('fileInput') as HTMLInputElement;
+  async tirarFoto() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 90,
+        allowEditing: true, 
+        resultType: CameraResultType.Uri, 
+        source: CameraSource.Camera 
+      });
 
-    if (input) {
-      input.click();
+      // Erro TypeScript resolvido com o || ''
+      this.anuncio.foto = image.webPath || '';
+    
+    } catch (erro) {
+      console.log('Utilizador cancelou a foto', erro);
     }
   }
 
-  carregarFoto(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const file = input.files?.[0];
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.anuncio.foto = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 
-    if (!file) {
+  async publicarAnuncio() {
+    if (!this.anuncio.titulo || !this.anuncio.preco) {
+      window.alert('Por favor, preencha pelo menos o título e o preço!');
       return;
     }
 
-    const reader = new FileReader();
+    const anunciosAtuais = await this.storage.get('listaAnuncios') || [];
+    anunciosAtuais.push(this.anuncio);
+    await this.storage.set('listaAnuncios', anunciosAtuais);
 
-    reader.onload = () => {
-      this.fotoPreview = reader.result as string;
+    window.alert('Anúncio publicado com sucesso!');
+
+    this.anuncio = {
+      foto: '', titulo: '', descricao: '', preco: null, raridade: 'Comum', condicao: 'Bom'
     };
-
-    reader.readAsDataURL(file);
-  }
-
-  selecionarRaridade(raridade: string): void {
-    this.raridadeSelecionada = raridade;
-  }
-
-  selecionarCondicao(condicao: string): void {
-    this.condicaoSelecionada = condicao;
-  }
-
-  publicarAnuncio(): void {
-    const novoAnuncio: Anuncio = {
-      id: Date.now(),
-      nome: this.tituloAnuncio || 'Anúncio sem título',
-      preco: Number(this.precoAnuncio) || 0,
-      imagem: this.fotoPreview || 'assets/moedas/default.jpg',
-      visualizacoes: 0,
-      mensagens: 0
-    };
-
-    this.anunciosService.adicionarAnuncio(novoAnuncio);
-
-    this.tituloAnuncio = '';
-    this.descricaoAnuncio = '';
-    this.precoAnuncio = null;
-    this.fotoPreview = null;
-    this.raridadeSelecionada = '';
-    this.condicaoSelecionada = '';
 
     this.router.navigate(['/anuncios-ativos']);
   }

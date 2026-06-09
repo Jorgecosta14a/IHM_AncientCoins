@@ -1,4 +1,4 @@
-/* Fundo cinzento claro igual ao Explorar */
+
 .detalhes-bg {
   --background: #e2e2e2;
 }
@@ -13,7 +13,7 @@
   cursor: pointer;
 }
 
-/* O Cartão Branco do Figma */
+
 .main-card {
   background: white;
   border: 1.5px solid #b89c49;
@@ -36,7 +36,7 @@
   cursor: pointer;
 }
 
-/* Zona da Imagem */
+
 .image-section {
   display: flex;
   flex-direction: column;
@@ -64,7 +64,7 @@
   right: 10px;
 }
 
-/* Título e Preço */
+
 .title-price-row {
   display: flex;
   justify-content: space-between;
@@ -96,14 +96,13 @@
 
 .price-currency {
   font-family: sans-serif;
-  font-size: 2.5rem; /* O Euro Gigante do Figma */
+  font-size: 2.5rem; 
   font-weight: 400;
   color: #000;
   margin-left: 5px;
   line-height: 1;
 }
 
-/* Secções de Info */
 .info-section {
   margin-bottom: 20px;
 }
@@ -127,7 +126,6 @@
   line-height: 1.5;
 }
 
-/* A Cápsula Única (Em vez da grelha com várias opções) */
 .state-pill {
   background: #d9d9d9;
   border: 1px solid #333;
@@ -141,7 +139,6 @@
   text-align: center;
 }
 
-/* Botões Finais */
 .action-buttons {
   display: flex;
   gap: 15px;
@@ -172,7 +169,6 @@
   border: none;
 }
 
-/* Modo Escuro */
 :host-context(.dark) {
   .detalhes-bg { --background: #121212 !important; }
   .back-btn { color: #ffffff !important; }
@@ -180,7 +176,6 @@
   .coin-title, .price-value, .price-currency, .section-title { color: #ffffff !important; }
   .desc-box, .state-pill { background: #2a2a2a !important; border-color: #555 !important; color: #E0E0E0 !important; }
 }
-/* --- Cartão do Vendedor --- */
 .seller-card {
   display: flex;
   align-items: center;

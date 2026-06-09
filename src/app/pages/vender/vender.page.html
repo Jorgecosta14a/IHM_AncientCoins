@@ -1,142 +1,83 @@
-<ion-content class="vender-bg">
+<ion-header class="ion-no-border">
+  <ion-toolbar style="--background: #EAEAEA;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/explorar" icon="arrow-back-outline" text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-family: serif; color: #B89758; font-weight: bold;">Criar novo anúncio</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <div class="page-card">
-
-    <div class="header-section">
-      <ion-icon
-        name="arrow-back-outline"
-        (click)="voltar()"
-        class="back-btn">
-      </ion-icon>
-
-      <h1 class="page-title">Criar novo anúncio</h1>
-    </div>
-
-    <div class="form-container">
-
-      <input
-        type="file"
-        id="fileInput"
-        accept="image/*"
-        (change)="carregarFoto($event)"
-        style="display: none;"
-      />
-
+<ion-content style="--background: #EAEAEA;">
+  <div style="padding: 10px 20px 30px 20px;">
+    
+    <div class="input-group">
       <label>Fotos da moeda</label>
-
-      <div
-        class="photo-upload-box"
-        [class.has-photo]="fotoPreview"
-        (click)="abrirSeletorDeFoto()">
-
-        <ng-container *ngIf="!fotoPreview">
-          <ion-icon name="camera"></ion-icon>
-          <p>Adicione fotos</p>
-        </ng-container>
-
-        <img
-          *ngIf="fotoPreview"
-          [src]="fotoPreview"
-          class="preview-img"
-          alt="Pré-visualização da moeda"
-        />
+      
+      <div class="image-upload-box" *ngIf="!anuncio.foto" (click)="tirarFoto()">
+        <ion-icon name="camera"></ion-icon>
+        <p>Adicione fotos</p>
       </div>
-
-      <label>Título do Anúncio</label>
-      <input
-        type="text"
-        class="custom-input"
-        [(ngModel)]="tituloAnuncio"
-        placeholder="Ex: Moeda Romana"
-      />
-
-      <label>Descrição detalhada</label>
-      <textarea
-        class="custom-textarea"
-        [(ngModel)]="descricaoAnuncio"
-        placeholder="Descreve o estado, origem ou detalhes da moeda">
-      </textarea>
-
-      <label>Preço (€)</label>
-      <input
-        type="number"
-        class="custom-input"
-        [(ngModel)]="precoAnuncio"
-        placeholder="0"
-      />
-
-      <label>Raridade</label>
-      <div class="pills-row">
-        <button
-          type="button"
-          class="segment-btn"
-          [class.active]="raridadeSelecionada === 'Muito raro'"
-          (click)="selecionarRaridade('Muito raro')">
-          Muito raro
-        </button>
-
-        <button
-          type="button"
-          class="segment-btn"
-          [class.active]="raridadeSelecionada === 'Raro'"
-          (click)="selecionarRaridade('Raro')">
-          Raro
-        </button>
-
-        <button
-          type="button"
-          class="segment-btn"
-          [class.active]="raridadeSelecionada === 'Comum'"
-          (click)="selecionarRaridade('Comum')">
-          Comum
-        </button>
-      </div>
-
-      <label>Condição</label>
-      <div class="pills-row">
-        <button
-          type="button"
-          class="segment-btn"
-          [class.active]="condicaoSelecionada === 'Novo'"
-          (click)="selecionarCondicao('Novo')">
-          Novo
-        </button>
-
-        <button
-          type="button"
-          class="segment-btn"
-          [class.active]="condicaoSelecionada === 'Muito Bom'"
-          (click)="selecionarCondicao('Muito Bom')">
-          Muito Bom
-        </button>
-
-        <button
-          type="button"
-          class="segment-btn"
-          [class.active]="condicaoSelecionada === 'Bom'"
-          (click)="selecionarCondicao('Bom')">
-          Bom
-        </button>
-
-        <button
-          type="button"
-          class="segment-btn"
-          [class.active]="condicaoSelecionada === 'Gasto'"
-          (click)="selecionarCondicao('Gasto')">
-          Gasto
-        </button>
-      </div>
-
-      <ion-button
-        expand="block"
-        shape="round"
-        class="publish-btn"
-        (click)="publicarAnuncio()">
-        Publicar anúncio
-      </ion-button>
-
+      
+      <img *ngIf="anuncio.foto" [src]="anuncio.foto" class="preview-img" (click)="tirarFoto()">
     </div>
+
+    <div class="input-group">
+      <label>Título do Anúncio</label>
+      <ion-item lines="none" class="custom-input">
+        <ion-input placeholder="Ex: Moeda Romana" [(ngModel)]="anuncio.titulo"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="input-group">
+      <label>Descrição detalhada</label>
+      <ion-item lines="none" class="custom-input">
+        <ion-textarea placeholder="Descreve o estado, origem ou detalhes da moeda" rows="3" [(ngModel)]="anuncio.descricao"></ion-textarea>
+      </ion-item>
+    </div>
+
+    <div class="input-group">
+      <label>Preço (€)</label>
+      <ion-item lines="none" class="custom-input">
+        <ion-input type="number" placeholder="0" [(ngModel)]="anuncio.preco"></ion-input>
+      </ion-item>
+    </div>
+
+    <div class="input-group">
+      <label>Raridade</label>
+      <ion-segment [(ngModel)]="anuncio.raridade" class="custom-segment">
+        <ion-segment-button value="Muito raro">
+          <ion-label>Muito raro</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Raro">
+          <ion-label>Raro</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Comum">
+          <ion-label>Comum</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <div class="input-group">
+      <label>Condição</label>
+      <ion-segment [(ngModel)]="anuncio.condicao" class="custom-segment">
+        <ion-segment-button value="Novo">
+          <ion-label>Novo</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Muito Bom">
+          <ion-label>Muito Bom</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Bom">
+          <ion-label>Bom</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="Gasto">
+          <ion-label>Gasto</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+    </div>
+
+    <ion-button expand="block" shape="round" class="gold-btn" (click)="publicarAnuncio()">
+      Publicar anúncio
+    </ion-button>
 
   </div>
-
 </ion-content>

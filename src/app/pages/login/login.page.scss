@@ -1,7 +1,7 @@
 .login-bg {
-  /* Apenas o nome do ficheiro, sem pontos nem barras! */
   --background: url('bg-auth.jpg') center center / cover no-repeat;
 }
+
 .login-container {
   display: flex;
   flex-direction: column;
@@ -17,11 +17,14 @@
   font-size: 3.5rem;
   margin-bottom: 30px;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  text-align: center;
+  line-height: 1.1;
+  width: 100%;
 }
 
 .login-card {
   background: rgba(43, 45, 66, 0.85);
-  border: 2px solid #D4AF37;
+  border: 2px solid #B89758; 
   border-radius: 20px;
   padding: 30px 20px;
   width: 100%;
@@ -32,7 +35,7 @@
 
 .card-title {
   font-family: serif;
-  color: #D4AF37;
+  color: #B89758; 
   font-size: 1.8rem;
   text-align: center;
   margin-top: 0;
@@ -73,7 +76,7 @@
   margin-bottom: 25px;
 
   .forgot-link {
-    color: #D4AF37;
+    color: #B89758; 
     font-size: 0.85rem;
     text-decoration: underline;
     cursor: pointer;
@@ -81,7 +84,7 @@
 }
 
 .gold-login-btn {
-  --background: #D4AF37;
+  --background: #B89758; 
   --color: white;
   font-family: sans-serif;
   font-weight: bold;
@@ -98,7 +101,7 @@
   font-family: sans-serif;
 
   .gold-link {
-    color: #D4AF37;
+    color: #B89758; 
     font-weight: bold;
     cursor: pointer;
     text-decoration: underline;

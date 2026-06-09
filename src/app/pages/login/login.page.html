@@ -1,16 +1,16 @@
 <ion-content class="login-bg">
   <div class="login-container">
     
-    <h1 class="welcome-title">Bem-Vindo</h1>
+    <h1 class="welcome-title">Bem-vindo de volta</h1>
 
     <div class="login-card">
-      <h2 class="card-title">Iniciar sessão</h2>
+      <h2 class="card-title">Iniciar Sessão</h2>
 
       <div class="input-group">
-        <label>E-mail ou nome de utilizador</label>
+        <label>E-mail</label>
         <ion-item lines="none" class="custom-input-item">
-          <ion-icon name="person-outline" slot="start"></ion-icon>
-          <ion-input type="text"></ion-input>
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-input type="email" [(ngModel)]="emailInput"></ion-input>
         </ion-item>
       </div>
 
@@ -18,20 +18,20 @@
         <label>Palavra-passe</label>
         <ion-item lines="none" class="custom-input-item">
           <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" [(ngModel)]="passwordInput"></ion-input>
         </ion-item>
       </div>
 
       <div class="forgot-password">
-        <span class="forgot-link">Esqueceu-se da palavra-passe?</span>
+        <a class="forgot-link">Esqueceu a palavra-passe?</a>
       </div>
-
-      <ion-button expand="block" shape="round" class="gold-login-btn" (click)="entrar()">
+      
+      <ion-button expand="block" shape="round" class="gold-login-btn" style="z-index: 9999; position: relative; pointer-events: auto;" (click)="fazerLogin()">
         Entrar
       </ion-button>
 
       <p class="register-text">
-        Ainda não tem conta? <span class="gold-link" (click)="irParaRegisto()">Clique aqui</span>
+        Ainda não tem conta? <a routerLink="/registo" class="gold-link">Criar conta</a>
       </p>
     </div>
 

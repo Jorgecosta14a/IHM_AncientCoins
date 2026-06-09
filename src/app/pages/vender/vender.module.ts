@@ -4,16 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { VenderPageRoutingModule } from './vender-routing.module';
-import { VenderPage } from './vender.page';
-
+import { VenderPage } from './vender.page'; 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     VenderPageRoutingModule,
-    VenderPage
-  ],
-  declarations: []
+    VenderPage 
+  ]
 })
 export class VenderPageModule {}

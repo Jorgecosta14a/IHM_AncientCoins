@@ -40,7 +40,7 @@
   margin: 0;
 }
 
-/* Corpo do Chat */
+// Corpo do Chat 
 .chat-body {
   padding: 20px;
   display: flex;
@@ -53,7 +53,7 @@
   width: 100%;
 }
 
-/* MENSAGENS ENVIADAS POR TI (DIREITA) */
+//MENSAGENS ENVIADAS POR TI (DIREITA)
 .msg-eu {
   justify-content: flex-end; 
   
@@ -65,7 +65,7 @@
   .message-time { color: rgba(255,255,255,0.7); }
 }
 
-/* MENSAGENS DO VENDEDOR (ESQUERDA) */
+// MENSAGENS DO VENDEDOR 
 .msg-outro {
   justify-content: flex-start;
   
@@ -101,7 +101,7 @@
   text-align: right;
 }
 
-/* Barra Inferior */
+// Barra Inferior
 ion-footer {
   background: #e2e2e2 !important;
   --background: #e2e2e2 !important;
@@ -138,7 +138,7 @@ ion-footer {
   cursor: pointer;
 }
 
-/* Modo Escuro */
+// Modo Escuro 
 :host-context(.dark) {
   .chat-bg { --background: #121212 !important; }
   .back-btn { color: #fff !important; }

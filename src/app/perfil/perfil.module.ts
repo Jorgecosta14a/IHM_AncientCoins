@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { PerfilPageRoutingModule } from './perfil-routing.module';
-import { PerfilPage } from './perfil.page';
+import { PerfilPage } from './perfil.page'; // Importamos a página
 
 @NgModule({
   imports: [
@@ -12,8 +12,8 @@ import { PerfilPage } from './perfil.page';
     FormsModule,
     IonicModule,
     PerfilPageRoutingModule,
-    PerfilPage // <--- A página deve estar aqui nos imports
+    PerfilPage // <--- A PÁGINA AGORA ESTÁ AQUI, NOS IMPORTS!
   ]
-  // A linha "declarations" deve ser REMOVIDA
+  // A secção 'declarations: []' foi completamente apagada para não dar erro
 })
 export class PerfilPageModule {}

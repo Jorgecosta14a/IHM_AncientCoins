@@ -1,49 +1,49 @@
-<ion-content class="auth-bg">
-  <div class="overlay">
+<ion-content class="login-bg">
+  <div class="login-container">
     
-    <h1 class="main-title">Junte-se a nós</h1>
+    <h1 class="welcome-title">Junte-se a nós</h1>
 
-    <div class="auth-card">
+    <div class="login-card">
       <h2 class="card-title">Criar conta</h2>
 
       <div class="input-group">
         <label>Nome de Utilizador</label>
-        <ion-item lines="none" class="custom-input">
+        <ion-item lines="none" class="custom-input-item">
           <ion-icon name="person-outline" slot="start"></ion-icon>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" [(ngModel)]="nomeInput"></ion-input>
         </ion-item>
       </div>
 
       <div class="input-group">
         <label>E-mail</label>
-        <ion-item lines="none" class="custom-input">
-          <ion-icon name="person-outline" slot="start"></ion-icon>
-          <ion-input type="email"></ion-input>
+        <ion-item lines="none" class="custom-input-item">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          <ion-input type="email" [(ngModel)]="emailInput"></ion-input>
         </ion-item>
       </div>
 
       <div class="input-group">
         <label>Palavra-passe</label>
-        <ion-item lines="none" class="custom-input">
+        <ion-item lines="none" class="custom-input-item">
           <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" [(ngModel)]="passwordInput"></ion-input>
         </ion-item>
       </div>
 
       <div class="input-group">
         <label>Confirmar palavra-passe</label>
-        <ion-item lines="none" class="custom-input">
+        <ion-item lines="none" class="custom-input-item">
           <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" [(ngModel)]="confirmarPasswordInput"></ion-input>
         </ion-item>
       </div>
       
-      <ion-button expand="block" shape="round" class="gold-btn" routerLink="/explorar">
+      <ion-button expand="block" shape="round" class="gold-login-btn" (click)="criarConta()">
         Criar Conta
       </ion-button>
 
-      <p class="footer-text">
-        Já tem conta? <a routerLink="/login" class="gold-link underline">Clique aqui</a>
+      <p class="register-text">
+        Já tem conta? <a routerLink="/login" class="gold-link">Clique aqui</a>
       </p>
     </div>
 

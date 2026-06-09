@@ -1,8 +1,4 @@
-/* =========================================
-   O TEU DESIGN ORIGINAL (MODO CLARO)
-   ========================================= */
 .mensagens-bg {
-  /* O cinzento claro sólido do teu design */
   --background: #d9d9d9; 
 }
 
@@ -28,17 +24,17 @@
 .page-title {
   font-family: serif; 
   font-size: 2.4rem;
-  color: #b89c49; /* O teu dourado */
+  color: #b89c49; 
   margin: 0;
 }
 
 .chat-icon {
   font-size: 1.8rem;
-  color: #b89c49; /* O teu dourado */
+  color: #b89c49; 
 }
 
 .search-bar {
-  background: #b5b5b5; /* O fundo cinzento escuro da pesquisa */
+  background: #b5b5b5; 
   border-radius: 15px;
   padding: 12px 15px;
   width: 100%;
@@ -49,7 +45,7 @@
     outline: none;
     width: 100%;
     color: #333;
-    font-family: serif; /* A fonte no placeholder também parece clássica */
+    font-family: serif; 
     font-size: 0.95rem;
     
     &::placeholder {
@@ -65,10 +61,9 @@
   gap: 15px;
 }
 
-/* Os teus cartões exatos */
 .message-card {
   background: white;
-  border: 1px solid #b89c49; /* Borda dourada */
+  border: 1px solid #b89c49; 
   border-radius: 20px;
   padding: 10px 15px;
   display: flex;
@@ -106,7 +101,7 @@
 }
 
 .unread-badge {
-  background: #b89c49; /* Dourado */
+  background: #b89c49; 
   color: white;
   font-family: sans-serif;
   font-size: 0.8rem;
@@ -119,9 +114,6 @@
   border-radius: 50%;
 }
 
-/* =========================================
-   MODO ESCURO
-   ========================================= */
 :host-context(.dark) {
   .mensagens-bg {
     --background: #121212 !important;
@@ -144,7 +136,7 @@
 
   .message-card {
     background: #1E1E1E !important;
-    border: 1px solid #b89c49 !important; /* Mantemos a borda dourada no escuro! */
+    border: 1px solid #b89c49 !important; 
   }
 
   .user-name {

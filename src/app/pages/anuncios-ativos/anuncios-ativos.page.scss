@@ -1,131 +1,103 @@
-.ativos-bg {
-  --background: #e2e2e2;
-}
-
-.top-nav {
-  display: flex;
-  align-items: center;
-  padding: 30px 20px 20px 20px;
-}
-
-.back-btn {
-  font-size: 1.8rem;
-  color: #333;
-  cursor: pointer;
-}
-
-.page-title {
-  font-family: serif;
-  font-size: 1.8rem;
-  color: #b89c49;
-  margin: 0 0 0 15px;
-}
-
-.ads-container {
-  padding: 10px 20px 40px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.empty-state {
-  text-align: center;
-  color: #888;
-  font-family: sans-serif;
-  margin-top: 50px;
-}
-
-.ad-card {
-  background: white;
-  border: 1px solid #b89c49;
-  border-radius: 20px;
-  padding: 15px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.02);
-}
-
-.ad-content {
-  display: flex;
-  align-items: flex-start;
+/* --- Estilos do Cartão --- */
+.anuncio-card {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #B89758;
+  border-radius: 15px;
   margin-bottom: 15px;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 15px;
+  padding: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.ad-img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-right: 15px;
-}
-
-.ad-details {
-  flex: 1;
-}
-
-.ad-name {
-  font-family: serif;
-  font-size: 1.05rem;
-  font-weight: bold;
-  color: #000;
-  margin: 0 0 5px 0;
-  line-height: 1.3;
-}
-
-.ad-price {
-  font-family: serif;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #b89c49;
-  margin: 0 0 10px 0;
-}
-
-.ad-stats {
+.card-layout {
   display: flex;
   gap: 15px;
 }
 
-.stat {
+.img-box {
+  width: 90px;
+  height: 90px;
+  background-color: #CFCFCF;
+  border-radius: 10px;
   display: flex;
   align-items: center;
-  gap: 5px;
-  font-family: sans-serif;
-  font-size: 0.85rem;
-  color: #666;
-
-  ion-icon { font-size: 1.1rem; }
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  img { width: 100%; height: 100%; object-fit: cover; }
 }
 
-.ad-actions {
+.info-box {
+  flex: 1;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  padding: 0 10px;
 }
 
-.action-edit {
-  font-family: sans-serif;
-  font-size: 0.95rem;
-  font-weight: bold;
-  color: #000;
+.item-title { margin: 0 0 4px 0; font-family: serif; font-size: 1.1rem; color: #000; font-weight: bold; }
+.item-desc { margin: 0 0 8px 0; font-family: sans-serif; font-size: 0.8rem; color: #555; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.tags-row { display: flex; gap: 5px; margin-bottom: 6px; }
+.badge { background-color: #CFCFCF; color: #000; padding: 3px 8px; border-radius: 8px; font-size: 0.65rem; font-weight: bold; font-family: serif; }
+.item-price { margin: 0; font-family: sans-serif; font-size: 1.1rem; color: #B89758; font-weight: bold; text-align: right; }
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #EAEAEA;
+  margin-top: 10px;
+  padding-top: 5px;
+}
+
+.edit-btn { --color: #B89758; font-family: sans-serif; font-weight: bold; text-transform: none; }
+.delete-btn { --color: #D32F2F; font-family: sans-serif; font-weight: bold; text-transform: none; }
+
+.input-group {
+  margin-bottom: 20px;
+  label {
+    font-weight: bold;
+    color: #000;
+    font-family: serif;
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+}
+
+.image-upload-box {
+  border: 2px dashed #333;
+  background-color: #CFCFCF;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #555;
   cursor: pointer;
+  ion-icon { font-size: 2rem; margin-bottom: 5px; }
+  p { margin: 0; font-size: 0.9rem; font-family: sans-serif; }
 }
 
-.action-remove {
-  font-family: sans-serif;
-  font-size: 0.95rem;
-  font-weight: bold;
-  color: #cc0000;
-  cursor: pointer;
+.preview-img { width: 100%; height: 140px; object-fit: cover; border: 2px solid #B89758; border-radius: 5px; }
+
+.custom-input {
+  --background: #CFCFCF;
+  border-radius: 15px;
+  --padding-start: 15px;
+  ion-input, ion-textarea { color: #000; font-family: sans-serif; }
 }
 
-/* Modo Escuro */
-:host-context(.dark) {
-  .ativos-bg { --background: #121212 !important; }
-  .back-btn { color: #fff !important; }
-  .ad-card { background: #1E1E1E !important; }
-  .ad-name { color: #fff !important; }
-  .ad-content { border-bottom-color: #333 !important; }
-  .stat { color: #aaa !important; }
-  .action-edit { color: #fff !important; }
-  .action-remove { color: #ff4d4d !important; }
+.custom-segment {
+  background-color: #CFCFCF;
+  border-radius: 15px;
+  padding: 2px;
+  border: 1px solid #999;
+  ion-segment-button {
+    --color: #000;
+    --color-checked: #000;
+    --indicator-color: #A8A8A8;
+    font-size: 0.75rem;
+    font-weight: bold;
+    font-family: serif;
+    min-width: 0;
+    &::part(indicator-background) { border-radius: 12px; }
+  }
 }
